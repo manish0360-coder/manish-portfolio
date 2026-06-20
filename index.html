@@ -1,81 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="ext-resource-dependency" content="assets/Manish-Kumar-Resume.pdf" data-resource-id="resume" />
-<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
-<script src="./support.js"></script>
-<script>
-/* Standalone export helper: when the bundler has inlined the résumé PDF,
-   window.__resources.resume holds a blob URL. Swap it into the résumé links
-   once it's available (poll briefly; falls back to the relative path live). */
-(function () {
-  function applyResume() {
-    var r = window.__resources && window.__resources.resume;
-    if (!r) return false;
-    document.querySelectorAll('a[href$="Manish-Kumar-Resume.pdf"]').forEach(function (a) {
-      a.setAttribute('href', r);
-      a.setAttribute('download', 'Manish-Kumar-Resume.pdf');
-    });
-    return true;
-  }
-  var tries = 0;
-  var iv = setInterval(function () {
-    if (applyResume() || ++tries > 120) clearInterval(iv);
-  }, 100);
-  document.addEventListener('DOMContentLoaded', applyResume);
-})();
-</script>
-<template id="__bundler_thumbnail" data-bg-color="#06070B">
-  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
-    <rect width="1200" height="800" fill="#06070B"/>
-    <g stroke="#1d2333" stroke-width="3">
-      <line x1="600" y1="400" x2="420" y2="270"/>
-      <line x1="600" y1="400" x2="780" y2="250"/>
-      <line x1="600" y1="400" x2="470" y2="560"/>
-      <line x1="600" y1="400" x2="760" y2="540"/>
-      <line x1="420" y1="270" x2="780" y2="250"/>
-      <line x1="470" y1="560" x2="760" y2="540"/>
-    </g>
-    <g>
-      <circle cx="600" cy="400" r="34" fill="#E7E9F0"/>
-      <circle cx="420" cy="270" r="24" fill="#22D3EE"/>
-      <circle cx="780" cy="250" r="24" fill="#E255D0"/>
-      <circle cx="470" cy="560" r="24" fill="#5B8CFF"/>
-      <circle cx="760" cy="540" r="24" fill="#34E0A0"/>
-      <circle cx="880" cy="410" r="18" fill="#FB923C"/>
-      <line x1="600" y1="400" x2="880" y2="410" stroke="#1d2333" stroke-width="3"/>
-    </g>
-  </svg>
-</template>
-</head>
-<body>
-<x-dc>
-<helmet>
+<title>Manish Kumar — AI Research Engineer</title>
+<meta name="description" content="Manish Kumar — AI Research Engineer building cognitive architectures and agentic systems from first principles. MiniFlyWire and Noetica.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  *,*::before,*::after{box-sizing:border-box;}
-  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
-  body{margin:0;background:#06070B;color:#E7E9F0;font-family:'Space Grotesk',system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;}
-  ::selection{background:rgba(34,211,238,.28);color:#fff;}
-  a{color:inherit;text-decoration:none;}
-  ::-webkit-scrollbar{width:10px;height:10px;}
-  ::-webkit-scrollbar-track{background:#06070B;}
-  ::-webkit-scrollbar-thumb{background:#1a1d28;border-radius:6px;border:2px solid #06070B;}
-  ::-webkit-scrollbar-thumb:hover{background:#262a38;}
-  @keyframes om-twinkle{0%,100%{opacity:.25;}50%{opacity:.7;}}
-  @keyframes om-pulse{0%,100%{opacity:.55;}50%{opacity:1;}}
-  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;}*{animation:none!important;transition:none!important;}}
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{margin:0;background:#06070B;color:#E7E9F0;font-family:'Space Grotesk',system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;}
+::selection{background:rgba(34,211,238,.28);color:#fff;}
+a{color:inherit;text-decoration:none;}
+::-webkit-scrollbar{width:10px;height:10px;}
+::-webkit-scrollbar-track{background:#06070B;}
+::-webkit-scrollbar-thumb{background:#1a1d28;border-radius:6px;border:2px solid #06070B;}
+::-webkit-scrollbar-thumb:hover{background:#262a38;}
+@keyframes om-twinkle{0%,100%{opacity:.25;}50%{opacity:.7;}}
+@keyframes om-pulse{0%,100%{opacity:.55;}50%{opacity:1;}}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;}*{animation:none!important;transition:none!important;}}
+.hv1:hover{color:#E7E9F0 !important}
+.hv2:hover{color:#E7E9F0 !important}
+.hv3:hover{color:#E7E9F0 !important}
+.hv4:hover{color:#E7E9F0 !important}
+.hv5:hover{background:rgba(34,211,238,.1) !important;border-color:rgba(34,211,238,.6) !important}
+.hv6:hover{background:#5be3f0 !important;transform:translateY(-1px) !important}
+.hv7:hover{border-color:rgba(255,255,255,.42) !important;background:rgba(255,255,255,.03) !important}
+.hv8:hover{border-color:rgba(255,255,255,.42) !important;background:rgba(255,255,255,.03) !important}
+.hv9:hover{background:#0E1018 !important}
+.hv10:hover{background:#0E1018 !important}
+.hv11:hover{background:#0E1018 !important}
+.hv12:hover{background:#0E1018 !important}
+.hv13:hover{background:#0E1018 !important}
+.hv14:hover{background:#0E1018 !important}
+.hv15:hover{background:rgba(34,211,238,.1) !important;border-color:rgba(34,211,238,.6) !important}
+.hv16:hover{background:rgba(52,224,160,.1) !important;border-color:rgba(52,224,160,.6) !important}
+.hv17:hover{background:#5be3f0 !important;transform:translateY(-1px) !important}
+.hv18:hover{border-color:rgba(255,255,255,.42) !important;background:rgba(255,255,255,.03) !important}
+.hv19:hover{background:#0E1018 !important}
+.hv20:hover{background:#0E1018 !important}
+.hv21:hover{background:#0E1018 !important}
+.hv22:hover{background:#0E1018 !important}
+.hv23:hover{background:#0E1018 !important}
 </style>
-</helmet>
-
+</head>
+<body>
 <div style="position:relative;min-height:100vh;background:radial-gradient(1200px 800px at 70% -10%, rgba(34,211,238,.05), transparent 60%), radial-gradient(1000px 700px at 10% 20%, rgba(91,140,255,.045), transparent 55%), #06070B;">
 
-  <canvas ref="{{ starCanvas }}" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
+  <canvas id="starCanvas" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
 
   <!-- ===================== NAV ===================== -->
   <nav style="position:fixed;top:0;left:0;right:0;z-index:50;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,4vw,48px);background:rgba(6,7,11,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.07);">
@@ -84,11 +58,11 @@
       Manish Kumar
     </a>
     <div style="display:flex;align-items:center;gap:clamp(14px,2.4vw,30px);font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#8C92A2;">
-      <a href="#philosophy" style="transition:color .2s;" style-hover="color:#E7E9F0;">Philosophy</a>
-      <a href="#miniflywire" style="transition:color .2s;" style-hover="color:#E7E9F0;">MiniFlyWire</a>
-      <a href="#noetica" style="transition:color .2s;" style-hover="color:#E7E9F0;">Noetica</a>
-      <a href="#systems" style="transition:color .2s;" style-hover="color:#E7E9F0;">Systems</a>
-      <a href="#contact" style="color:#22D3EE;border:1px solid rgba(34,211,238,.32);padding:7px 14px;border-radius:2px;transition:all .2s;" style-hover="background:rgba(34,211,238,.1);border-color:rgba(34,211,238,.6);">Contact</a>
+      <a href="#philosophy" style="transition:color .2s;" data-hv="hv1">Philosophy</a>
+      <a href="#miniflywire" style="transition:color .2s;" data-hv="hv2">MiniFlyWire</a>
+      <a href="#noetica" style="transition:color .2s;" data-hv="hv3">Noetica</a>
+      <a href="#systems" style="transition:color .2s;" data-hv="hv4">Systems</a>
+      <a href="#contact" style="color:#22D3EE;border:1px solid rgba(34,211,238,.32);padding:7px 14px;border-radius:2px;transition:all .2s;" data-hv="hv5">Contact</a>
     </div>
   </nav>
 
@@ -115,9 +89,9 @@
       </p>
 
       <div data-reveal style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;">
-        <a href="#miniflywire" style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;background:#22D3EE;color:#04141a;padding:14px 24px;border-radius:2px;font-weight:600;transition:all .2s;display:flex;align-items:center;gap:10px;" style-hover="background:#5be3f0;transform:translateY(-1px);">View the work <span style="font-size:15px;">↓</span></a>
-        <a href="https://github.com/manish0360-coder" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(255,255,255,.16);color:#E7E9F0;padding:14px 24px;border-radius:2px;transition:all .2s;" style-hover="border-color:rgba(255,255,255,.42);background:rgba(255,255,255,.03);">GitHub</a>
-        <a href="assets/Manish-Kumar-Resume.pdf" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(255,255,255,.16);color:#E7E9F0;padding:14px 24px;border-radius:2px;transition:all .2s;" style-hover="border-color:rgba(255,255,255,.42);background:rgba(255,255,255,.03);">Résumé</a>
+        <a href="#miniflywire" style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;background:#22D3EE;color:#04141a;padding:14px 24px;border-radius:2px;font-weight:600;transition:all .2s;display:flex;align-items:center;gap:10px;" data-hv="hv6">View the work <span style="font-size:15px;">↓</span></a>
+        <a href="https://github.com/manish0360-coder" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(255,255,255,.16);color:#E7E9F0;padding:14px 24px;border-radius:2px;transition:all .2s;" data-hv="hv7">GitHub</a>
+        <a href="assets/Manish-Kumar-Resume.pdf" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(255,255,255,.16);color:#E7E9F0;padding:14px 24px;border-radius:2px;transition:all .2s;" data-hv="hv8">Résumé</a>
       </div>
 
       <div data-reveal style="margin-top:auto;padding-top:72px;display:flex;flex-wrap:wrap;gap:28px 44px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.05em;color:#565C6B;border-top:1px solid rgba(255,255,255,.06);">
@@ -157,7 +131,7 @@
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.07);border-radius:3px;overflow:hidden;">
 
-        <div data-reveal style="background:#0A0B11;padding:34px 30px;transition:background .25s;" style-hover="background:#0E1018;">
+        <div data-reveal style="background:#0A0B11;padding:34px 30px;transition:background .25s;" data-hv="hv9">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
             <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#565C6B;">P-01</span>
             <span style="width:26px;height:2px;background:#22D3EE;box-shadow:0 0 10px rgba(34,211,238,.6);"></span>
@@ -166,7 +140,7 @@
           <p style="color:#8C92A2;font-size:.95rem;margin:0;line-height:1.6;">Evidence precedes every intelligence claim. Observable signals are collected before higher-level reasoning is introduced.</p>
         </div>
 
-        <div data-reveal style="background:#0A0B11;padding:34px 30px;transition:background .25s;" style-hover="background:#0E1018;">
+        <div data-reveal style="background:#0A0B11;padding:34px 30px;transition:background .25s;" data-hv="hv10">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
             <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#565C6B;">P-02</span>
             <span style="width:26px;height:2px;background:#5B8CFF;box-shadow:0 0 10px rgba(91,140,255,.6);"></span>
@@ -175,7 +149,7 @@
           <p style="color:#8C92A2;font-size:.95rem;margin:0;line-height:1.6;">Hand-roll the primitives — the agent loop, memory, retrieval — before reaching for a framework. Understand why each part exists.</p>
         </div>
 
-        <div data-reveal style="background:#0A0B11;padding:34px 30px;transition:background .25s;" style-hover="background:#0E1018;">
+        <div data-reveal style="background:#0A0B11;padding:34px 30px;transition:background .25s;" data-hv="hv11">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
             <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#565C6B;">P-03</span>
             <span style="width:26px;height:2px;background:#34E0A0;box-shadow:0 0 10px rgba(52,224,160,.6);"></span>
@@ -184,7 +158,7 @@
           <p style="color:#8C92A2;font-size:.95rem;margin:0;line-height:1.6;">Every subsystem is proven by deterministic tests before integration — 58 passing tests, not assumptions.</p>
         </div>
 
-        <div data-reveal style="background:#0A0B11;padding:34px 30px;transition:background .25s;" style-hover="background:#0E1018;">
+        <div data-reveal style="background:#0A0B11;padding:34px 30px;transition:background .25s;" data-hv="hv12">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
             <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#565C6B;">P-04</span>
             <span style="width:26px;height:2px;background:#E255D0;box-shadow:0 0 10px rgba(226,85,208,.6);"></span>
@@ -193,7 +167,7 @@
           <p style="color:#8C92A2;font-size:.95rem;margin:0;line-height:1.6;">Independent cognitive subsystems, each with one responsibility — replaceable without rewriting the whole.</p>
         </div>
 
-        <div data-reveal style="background:#0A0B11;padding:34px 30px;transition:background .25s;" style-hover="background:#0E1018;">
+        <div data-reveal style="background:#0A0B11;padding:34px 30px;transition:background .25s;" data-hv="hv13">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
             <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#565C6B;">P-05</span>
             <span style="width:26px;height:2px;background:#FB923C;box-shadow:0 0 10px rgba(251,146,60,.6);"></span>
@@ -202,7 +176,7 @@
           <p style="color:#8C92A2;font-size:.95rem;margin:0;line-height:1.6;">Internal reasoning stays visible. Every decision is traceable rather than hidden inside a black box.</p>
         </div>
 
-        <div data-reveal style="background:#0A0B11;padding:34px 30px;transition:background .25s;" style-hover="background:#0E1018;">
+        <div data-reveal style="background:#0A0B11;padding:34px 30px;transition:background .25s;" data-hv="hv14">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
             <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#565C6B;">P-06</span>
             <span style="width:26px;height:2px;background:#22D3EE;box-shadow:0 0 10px rgba(34,211,238,.6);"></span>
@@ -228,7 +202,7 @@
             <h2 data-reveal style="font-size:clamp(2.4rem,5.5vw,4rem);line-height:1;letter-spacing:-.03em;font-weight:600;margin:0 0 18px;">MiniFlyWire</h2>
             <p data-reveal style="font-size:clamp(1.05rem,2vw,1.3rem);color:#A6ACBC;max-width:54ch;margin:0;">A brain-inspired cognitive architecture rendered as a live 3D observatory — where you can watch an agent learn, remember, reason, and decide in real time.</p>
           </div>
-          <a data-reveal href="https://github.com/manish0360-coder/AI-intereactive-Brain-inspired-from-Mini-Flywire-" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(34,211,238,.32);color:#22D3EE;padding:13px 22px;border-radius:2px;white-space:nowrap;transition:all .2s;" style-hover="background:rgba(34,211,238,.1);border-color:rgba(34,211,238,.6);">View Repository ↗</a>
+          <a data-reveal href="https://github.com/manish0360-coder/AI-intereactive-Brain-inspired-from-Mini-Flywire-" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(34,211,238,.32);color:#22D3EE;padding:13px 22px;border-radius:2px;white-space:nowrap;transition:all .2s;" data-hv="hv15">View Repository ↗</a>
         </div>
 
         <!-- HERO VISUAL -->
@@ -348,7 +322,7 @@
             <h2 data-reveal style="font-size:clamp(2.4rem,5.5vw,4rem);line-height:1;letter-spacing:-.03em;font-weight:600;margin:0 0 18px;">Noetica</h2>
             <p data-reveal style="font-size:clamp(1.05rem,2vw,1.3rem);color:#A6ACBC;max-width:56ch;margin:0;">An evidence-based learning-intelligence engine, built primitive by primitive — modelling what a learner knows, has forgotten, and should study next.</p>
           </div>
-          <a data-reveal href="https://github.com/manish0360-coder/Noetica-agent-lab" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(52,224,160,.32);color:#34E0A0;padding:13px 22px;border-radius:2px;white-space:nowrap;transition:all .2s;" style-hover="background:rgba(52,224,160,.1);border-color:rgba(52,224,160,.6);">View Repository ↗</a>
+          <a data-reveal href="https://github.com/manish0360-coder/Noetica-agent-lab" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(52,224,160,.32);color:#34E0A0;padding:13px 22px;border-radius:2px;white-space:nowrap;transition:all .2s;" data-hv="hv16">View Repository ↗</a>
         </div>
 
         <!-- CORE INSIGHT -->
@@ -538,20 +512,20 @@ tests/test_memory_agent_verdict.py <span style="color:#34E0A0;">.....</span>
         <p data-reveal style="color:#A6ACBC;font-size:1.1rem;margin:0 auto 44px;max-width:48ch;">Open to research engineering roles at frontier AI labs. The fastest way to reach me is email.</p>
 
         <div data-reveal style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-bottom:56px;">
-          <a data-email-link href="#contact" style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;background:#22D3EE;color:#04141a;padding:15px 28px;border-radius:2px;font-weight:600;transition:all .2s;" style-hover="background:#5be3f0;transform:translateY(-1px);">Email me ↗</a>
-          <a href="assets/Manish-Kumar-Resume.pdf" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(255,255,255,.16);color:#E7E9F0;padding:15px 28px;border-radius:2px;transition:all .2s;" style-hover="border-color:rgba(255,255,255,.42);background:rgba(255,255,255,.03);">Résumé</a>
+          <a href="/cdn-cgi/l/email-protection#cfa2aea1a6bca7b6aeabbab9aea1bca7fffcf9ff8fa8a2aea6a3e1aca0a2" style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;background:#22D3EE;color:#04141a;padding:15px 28px;border-radius:2px;font-weight:600;transition:all .2s;" data-hv="hv17">Email me ↗</a>
+          <a href="assets/Manish-Kumar-Resume.pdf" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(255,255,255,.16);color:#E7E9F0;padding:15px 28px;border-radius:2px;transition:all .2s;" data-hv="hv18">Résumé</a>
         </div>
 
         <div data-reveal style="display:flex;flex-wrap:wrap;gap:0;justify-content:center;border:1px solid rgba(255,255,255,.08);border-radius:3px;overflow:hidden;max-width:760px;margin:0 auto;">
-          <a data-email-link href="#contact" style="flex:1;min-width:200px;padding:22px 20px;background:#0A0B11;border-right:1px solid rgba(255,255,255,.08);transition:background .2s;text-align:left;" style-hover="background:#0E1018;">
+          <a href="/cdn-cgi/l/email-protection#93fef2fdfae0fbeaf2f7e6e5f2fde0fba3a0a5a3d3f4fef2faffbdf0fcfe" style="flex:1;min-width:200px;padding:22px 20px;background:#0A0B11;border-right:1px solid rgba(255,255,255,.08);transition:background .2s;text-align:left;" data-hv="hv19">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#565C6B;margin-bottom:8px;">Email</div>
-            <div data-email-text style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#22D3EE;word-break:break-all;">&nbsp;</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#22D3EE;word-break:break-all;"><span class="__cf_email__" data-cfemail="68050906011b0011090c1d1e09061b00585b5e58280f05090104460b0705">[email&#160;protected]</span></div>
           </a>
-          <a href="https://github.com/manish0360-coder" target="_blank" rel="noopener" style="flex:1;min-width:200px;padding:22px 20px;background:#0A0B11;border-right:1px solid rgba(255,255,255,.08);transition:background .2s;text-align:left;" style-hover="background:#0E1018;">
+          <a href="https://github.com/manish0360-coder" target="_blank" rel="noopener" style="flex:1;min-width:200px;padding:22px 20px;background:#0A0B11;border-right:1px solid rgba(255,255,255,.08);transition:background .2s;text-align:left;" data-hv="hv20">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#565C6B;margin-bottom:8px;">GitHub</div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#E7E9F0;">manish0360-coder</div>
           </a>
-          <a href="https://www.linkedin.com/in/manish-kumar-403b9322a/" target="_blank" rel="noopener" style="flex:1;min-width:200px;padding:22px 20px;background:#0A0B11;text-align:left;transition:background .2s;" style-hover="background:#0E1018;">
+          <a href="https://www.linkedin.com/in/manish-kumar-403b9322a/" target="_blank" rel="noopener" style="flex:1;min-width:200px;padding:22px 20px;background:#0A0B11;text-align:left;transition:background .2s;" data-hv="hv21">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#565C6B;margin-bottom:8px;">LinkedIn</div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#E7E9F0;">manish-kumar</div>
           </a>
@@ -559,10 +533,10 @@ tests/test_memory_agent_verdict.py <span style="color:#34E0A0;">.....</span>
 
         <div data-reveal style="margin:26px auto 0;max-width:760px;border:1px solid rgba(255,255,255,.08);border-radius:3px;overflow:hidden;display:flex;flex-wrap:wrap;">
           <div style="flex:0 0 auto;padding:20px 22px;background:#0A0B11;border-right:1px solid rgba(255,255,255,.08);display:flex;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#565C6B;">Featured Repos</div>
-          <a href="https://github.com/manish0360-coder/AI-intereactive-Brain-inspired-from-Mini-Flywire-" target="_blank" rel="noopener" style="flex:1;min-width:180px;padding:20px 22px;background:#0A0B11;border-right:1px solid rgba(255,255,255,.08);text-align:left;transition:background .2s;" style-hover="background:#0E1018;">
+          <a href="https://github.com/manish0360-coder/AI-intereactive-Brain-inspired-from-Mini-Flywire-" target="_blank" rel="noopener" style="flex:1;min-width:180px;padding:20px 22px;background:#0A0B11;border-right:1px solid rgba(255,255,255,.08);text-align:left;transition:background .2s;" data-hv="hv22">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#22D3EE;display:flex;align-items:center;justify-content:space-between;gap:10px;">MiniFlyWire <span style="color:#565C6B;">↗</span></div>
           </a>
-          <a href="https://github.com/manish0360-coder/Noetica-agent-lab" target="_blank" rel="noopener" style="flex:1;min-width:180px;padding:20px 22px;background:#0A0B11;text-align:left;transition:background .2s;" style-hover="background:#0E1018;">
+          <a href="https://github.com/manish0360-coder/Noetica-agent-lab" target="_blank" rel="noopener" style="flex:1;min-width:180px;padding:20px 22px;background:#0A0B11;text-align:left;transition:background .2s;" data-hv="hv23">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#34E0A0;display:flex;align-items:center;justify-content:space-between;gap:10px;">Noetica Agent Lab <span style="color:#565C6B;">↗</span></div>
           </a>
         </div>
@@ -579,124 +553,78 @@ tests/test_memory_agent_verdict.py <span style="color:#34E0A0;">.....</span>
 
   </main>
 </div>
-</x-dc>
-<script type="text/x-dc" data-dc-script>
-class Component extends DCLogic {
-  componentDidMount() {
-    this._initStarfield();
-    this._initReveal();
-    this._initEmail();
-    this._initVideo();
-  }
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(function(){
+  // Attach generated hover classes
+  document.querySelectorAll('[data-hv]').forEach(function(el){ el.classList.add(el.getAttribute('data-hv')); });
 
-  _initVideo() {
-    const v = document.querySelector('video[data-demo]');
-    if (!v) return;
-    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    v.muted = true;
-    v.setAttribute('muted', '');
-    v.playsInline = true;
-    v.setAttribute('playsinline', '');
-    if (reduce) {
-      // Don't autoplay motion; let the visitor start it.
-      v.controls = true;
-      return;
-    }
-    v.loop = true;
-    v.autoplay = true;
-    const p = v.play();
-    if (p && p.catch) p.catch(() => { v.controls = true; });
-  }
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  _initEmail() {
-    // Assemble at runtime so Cloudflare's static scanner finds no literal to obfuscate.
-    const user = 'manishyaduvansh0360';
-    const addr = user + '@' + 'gmail' + '.com';
-    document.querySelectorAll('[data-email-link]').forEach((a) => { a.href = 'mailto:' + addr; });
-    document.querySelectorAll('[data-email-text]').forEach((el) => { el.textContent = addr; });
-  }
-
-  componentWillUnmount() {
-    if (this._raf) cancelAnimationFrame(this._raf);
-    if (this._onResize) window.removeEventListener('resize', this._onResize);
-    if (this._io) this._io.disconnect();
-  }
-
-  _initReveal() {
-    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const els = Array.from(document.querySelectorAll('[data-reveal]'));
-    els.forEach((el) => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(16px)';
-      el.style.transition = 'opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1)';
-      el.style.willChange = 'opacity, transform';
+  // ---- Scroll reveal (bulletproof: never leaves content hidden) ----
+  (function(){
+    var els = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+    els.forEach(function(el){
+      el.style.opacity='0'; el.style.transform='translateY(16px)';
+      el.style.transition='opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1)';
+      el.style.willChange='opacity, transform';
     });
-    const show = (el) => { el.style.opacity = '1'; el.style.transform = 'none'; };
-    if (reduce || !('IntersectionObserver' in window)) { els.forEach(show); return; }
-    this._io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) { show(e.target); this._io.unobserve(e.target); }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-    els.forEach((el) => this._io.observe(el));
-    // Safety fallback: reveal anything still hidden after load.
-    setTimeout(() => els.forEach((el) => { if (el.style.opacity === '0') show(el); }), 2500);
-  }
+    var fade=function(el){ el.style.opacity='1'; el.style.transform='none'; };
+    var snap=function(el){ el.style.transition='none'; el.style.opacity='1'; el.style.transform='none'; };
+    if(reduce || !('IntersectionObserver' in window)){ els.forEach(snap); return; }
+    var revealed=0;
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ fade(e.target); io.unobserve(e.target); revealed++; } });
+    },{threshold:0.1, rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(el){ io.observe(el); });
+    // Health check: if IO never fired (offscreen/frozen frame), snap everything visible so content is never lost.
+    setTimeout(function(){ if(revealed===0){ try{io.disconnect();}catch(e){} els.forEach(snap); } }, 1600);
+  })();
 
-  _initStarfield() {
-    let canvas = this.refs && this.refs.starCanvas;
-    if (canvas && canvas.current) canvas = canvas.current;
-    if (!canvas || typeof canvas.getContext !== 'function') {
-      canvas = document.querySelector('canvas');
+  // ---- Demo video: muted autoplay loop ----
+  (function(){
+    var v=document.querySelector('video[data-demo]');
+    if(!v) return;
+    v.muted=true; v.setAttribute('muted',''); v.playsInline=true; v.setAttribute('playsinline','');
+    if(reduce){ v.controls=true; return; }
+    v.loop=true; v.autoplay=true;
+    var p=v.play(); if(p&&p.catch) p.catch(function(){ v.controls=true; });
+  })();
+
+  // ---- Starfield ----
+  (function(){
+    var canvas=document.getElementById('starCanvas');
+    if(!canvas||typeof canvas.getContext!=='function') return;
+    var ctx=canvas.getContext('2d');
+    var w,h,dpr,stars,raf;
+    var COLORS=['rgba(231,233,240,','rgba(34,211,238,','rgba(91,140,255,','rgba(226,85,208,'];
+    function build(){
+      dpr=Math.min(window.devicePixelRatio||1,2);
+      w=canvas.clientWidth; h=canvas.clientHeight;
+      canvas.width=Math.floor(w*dpr); canvas.height=Math.floor(h*dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      var count=Math.min(150,Math.floor((w*h)/12000));
+      stars=[];
+      for(var i=0;i<count;i++){
+        var bias=Math.random();
+        var color=bias>0.86?COLORS[1+Math.floor(Math.random()*3)]:COLORS[0];
+        stars.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.1+0.25,base:Math.random()*0.35+0.12,amp:Math.random()*0.35,sp:Math.random()*0.0007+0.0002,ph:Math.random()*Math.PI*2,color:color});
+      }
     }
-    if (!canvas || typeof canvas.getContext !== 'function') return;
-    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const ctx = canvas.getContext('2d');
-    let w, h, dpr, stars;
-    const COLORS = ['rgba(231,233,240,', 'rgba(34,211,238,', 'rgba(91,140,255,', 'rgba(226,85,208,'];
-
-    const build = () => {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      w = canvas.clientWidth; h = canvas.clientHeight;
-      canvas.width = Math.floor(w * dpr); canvas.height = Math.floor(h * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const count = Math.min(150, Math.floor((w * h) / 12000));
-      stars = [];
-      for (let i = 0; i < count; i++) {
-        const colorBias = Math.random();
-        const color = colorBias > 0.86 ? COLORS[1 + Math.floor(Math.random() * 3)] : COLORS[0];
-        stars.push({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          r: Math.random() * 1.1 + 0.25,
-          base: Math.random() * 0.35 + 0.12,
-          amp: Math.random() * 0.35,
-          sp: Math.random() * 0.0007 + 0.0002,
-          ph: Math.random() * Math.PI * 2,
-          color,
-        });
+    function draw(t){
+      ctx.clearRect(0,0,w,h);
+      for(var i=0;i<stars.length;i++){
+        var s=stars[i];
+        var tw=reduce?s.base:s.base+s.amp*(0.5+0.5*Math.sin(t*s.sp+s.ph));
+        ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+        ctx.fillStyle=s.color+Math.max(0,Math.min(1,tw)).toFixed(3)+')'; ctx.fill();
       }
-    };
-
-    const draw = (t) => {
-      ctx.clearRect(0, 0, w, h);
-      for (const s of stars) {
-        const tw = reduce ? s.base : s.base + s.amp * (0.5 + 0.5 * Math.sin(t * s.sp + s.ph));
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = s.color + Math.max(0, Math.min(1, tw)).toFixed(3) + ')';
-        ctx.fill();
-      }
-      this._raf = requestAnimationFrame(draw);
-    };
-
-    this._onResize = () => build();
+      raf=requestAnimationFrame(draw);
+    }
+    window.addEventListener('resize', build);
     build();
-    if (reduce) { draw(0); if (this._raf) cancelAnimationFrame(this._raf); }
-    else { this._raf = requestAnimationFrame(draw); }
-    window.addEventListener('resize', this._onResize);
-  }
-}
+    if(reduce){ draw(0); if(raf) cancelAnimationFrame(raf); } else { raf=requestAnimationFrame(draw); }
+  })();
+})();
 </script>
 </body>
 </html>

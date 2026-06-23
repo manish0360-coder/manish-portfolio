@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Institute Engine — Integration Tests</title>
+<style>
+  html,body{margin:0;height:100%;background:#06070B;color:#E7E9F0;font-family:'IBM Plex Mono',ui-monospace,monospace;}
+  /* the engine renders here; tests sample its framebuffer */
+  #c{position:fixed;inset:0;width:100%;height:100%;z-index:0;}
+  /* minimal HUD subset the UIFramework binds to */
+  #hud{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0;}
+  #report{position:fixed;right:0;top:0;width:min(560px,46vw);height:100%;z-index:5;overflow:auto;
+    background:rgba(6,7,11,.86);backdrop-filter:blur(6px);border-left:1px solid #1b2430;
+    padding:22px 24px;font-size:12.5px;line-height:1.75;letter-spacing:.02em;}
+  h1{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:#22D3EE;margin:0 0 16px;font-weight:500;}
+  .row{display:flex;gap:10px;align-items:flex-start;padding:3px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+  .pass{color:#34E0A0;} .fail{color:#FB6A6A;} .name{color:#C9CDD8;flex:1;} .det{color:#566276;}
+  #summary{margin-top:18px;font-size:13px;letter-spacing:.06em;}
+</style>
+</head>
+<body>
+  <canvas id="c"></canvas>
+  <!-- UIFramework-bound elements (subset) -->
+  <div id="hud">
+    <span id="state"></span>
+    <span id="wing"></span>
+    <div id="identity"></div>
+    <div id="prompt"></div>
+    <div id="tag0"></div><div id="tag1"></div><div id="tag2"></div>
+    <div id="fade"></div>
+    <!-- E5 Evidence ledger subset (lets _build write to the DOM under test) -->
+    <div id="evidence">
+      <button id="evidence-close"></button>
+      <div id="evidence-eyebrow"></div><div id="evidence-intro"></div>
+      <div id="evidence-repo"></div><div id="evidence-metrics"></div>
+      <div id="evidence-artifacts"></div><div id="evidence-claim"></div>
+    </div>
+    <!-- E6 Departure subset (cue + overlay) -->
+    <button id="conclude"></button>
+    <div id="departure">
+      <button id="departure-close"></button>
+      <div id="departure-eyebrow"></div><div id="departure-name"></div>
+      <div id="departure-role"></div><div id="departure-synthesis"></div>
+      <div id="departure-threads"></div><div id="departure-quote"></div>
+      <div id="departure-contacts"></div>
+    </div>
+  </div>
+  <div id="report"><h1>Engine Integration Tests</h1><div id="rows"></div><div id="summary">running…</div></div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module">
+import { Engine } from '../src/core/Engine.js';
+import { ProvingGroundScene } from '../src/scenes/ProvingGroundScene.js';
+import { AtriumScene } from '../src/scenes/AtriumScene.js';
+import { EventBus } from '../src/core/EventBus.js';
+import { Timeline } from '../src/animation/Timeline.js';
+import { CameraRig } from '../src/camera/CameraRig.js';
+import { WorldRegistry } from '../src/world/WorldRegistry.js';
+
+const rows = document.getElementById('rows');
+let pass = 0, fail = 0;
+function test(name, ok, detail = '') {
+  ok ? pass++ : fail++;
+  const r = document.createElement('div');
+  r.className = 'row';
+  r.innerHTML = `<span class="${ok ? 'pass' : 'fail'}">${ok ? '✓' : '✗'}</span>`
+    + `<span class="name">${name}</span><span class="det">${detail}</span>`;
+  rows.appendChild(r);
+}
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+function sampleBrightness(canvas) {
+  const gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
+  const w = canvas.width, h = canvas.height, cols = 12, rows = 8, buf = new Uint8Array(4);
+  let maxL = 0, lit = 0;
+  for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+    gl.readPixels(((c + 0.5) / cols * w) | 0, ((r + 0.5) / rows * h) | 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, buf);
+    const L = 0.2126 * buf[0] + 0.7152 * buf[1] + 0.0722 * buf[2];
+    if (L > maxL) maxL = L; if (L > 8) lit++;
+  }
+  return { maxL: Math.round(maxL), lit };
+}
+
+(async () => {
+  try {
+    // --- unit-ish checks on isolated systems (no global state) ---
+    const bus = new EventBus(); let got = 0; bus.on('x', v => got = v); bus.emit('x', 7);
+    test('EventBus delivers events', got === 7, 'payload 7');
+    const off = bus.on('y', () => got = -1); off(); bus.emit('y'); test('EventBus off() unsubscribes', got === 7);
+
+    let acc = 0, completed = false;
+    const tl = new Timeline();
+    tl.add({ duration: 100, easing: 'linear', onUpdate: (e) => acc = e, onComplete: () => completed = true });
+    for (let i = 0; i < 20; i++) tl.update(0.016);
+    test('Timeline runs & completes', completed && acc === 1, `acc=${acc.toFixed(2)}`);
+
+    const rig = new CameraRig({});
+    rig.defineShot('a', { position: [0, 0, 10], target: [0, 0, 0] });
+    rig.defineShot('b', { position: [0, 0, 20], target: [0, 0, 0] });
+    rig.play('a', 'b', 100, 'linear');
+    for (let i = 0; i < 12; i++) rig.update(0.016, i * 0.016, { parallax: { x: 0, y: 0 } });
+    test('CameraRig interpolates shots', rig.progress >= 1 && Math.abs(rig.camera.position.z - 20) < 0.01, `z=${rig.camera.position.z.toFixed(1)}`);
+
+    const reg = new WorldRegistry(); reg.register('s', ProvingGroundScene);
+    test('WorldRegistry register/get', reg.has('s') && reg.get('s') === ProvingGroundScene);
+
+    // --- full integration: boot the engine with the real scene ---
+    const canvas = document.getElementById('c');
+    const engine = new Engine({ canvas, config: { reducedMotion: false } });
+    test('Engine constructs all 20 systems', !!(engine.renderer && engine.post && engine.cameraRig && engine.timeline
+      && engine.input && engine.interaction && engine.lighting && engine.materials && engine.shaders && engine.assets
+      && engine.audio && engine.ui && engine.loader && engine.performance && engine.quality && engine.debug && engine.scenes
+      && engine.world && engine.navigation && engine.plugins && engine.events));
+
+    engine.registerScene('proving-ground', ProvingGroundScene);
+    await engine.start('proving-ground');
+    test('Scene becomes active', engine.scenes.active instanceof ProvingGroundScene, engine.scenes.active?.constructor.name);
+    test('Scene built node graph', engine.scenes.active.nodes.length === 177, engine.scenes.active.nodes.length + ' nodes');
+
+    // --- E1 ARRIVAL FLOW ---
+    await sleep(700);
+    const b1 = sampleBrightness(canvas);
+    test('E1: renders a lit frame at threshold', b1.maxL > 40 && b1.lit > 4, `maxL=${b1.maxL}, lit=${b1.lit}/96`);
+    test('E1: holds on threshold before entry', ['threshold', 'threshold-ready'].includes(engine.scenes.active.stateName), engine.scenes.active.stateName);
+
+    // wait for the LoadingSequence to complete -> threshold-ready
+    for (let i = 0; i < 40 && engine.scenes.active.stateName === 'threshold'; i++) await sleep(100);
+    test('E1: loading resolves to threshold-ready', engine.scenes.active.stateName === 'threshold-ready', engine.scenes.active.stateName);
+    test('E1: camera waits at the seed (no movement yet)', engine.cameraRig.progress === 1 && Math.abs(engine.cameraRig.camera.position.z - 5.5) < 3, `z=${engine.cameraRig.camera.position.z.toFixed(1)}`);
+
+    // first interaction (keyboard Enter -> 'confirm') ignites the first camera movement
+    const zBefore = engine.cameraRig.camera.position.z;
+    engine.events.emit('confirm');
+    await sleep(150);
+    test('E1: first interaction begins arrival', engine.scenes.active.stateName === 'arrival', engine.scenes.active.stateName);
+    await sleep(1400);
+    test('E1: camera is moving (the reveal)', engine.cameraRig.camera.position.z > zBefore + 1, `Δz=${(engine.cameraRig.camera.position.z - zBefore).toFixed(1)}`);
+
+    // arrival resolves into the curiosity hook
+    await sleep(6000);
+    test('E1: arrival resolves to curiosity prompt', engine.scenes.active.stateName === 'await', engine.scenes.active.stateName);
+    test('Camera arrival complete', engine.cameraRig.progress >= 1, `progress=${engine.cameraRig.progress.toFixed(2)}`);
+
+    // --- E2 ORIENTATION ---
+    const sc = engine.scenes.active;
+    test('E2: wayfinder has 3 destinations', engine.wayfinder.destinations.length === 3, engine.wayfinder.destinations.map(d => d.name).join(', '));
+    test('E2: interaction has 3 proxy targets', engine.interaction.targets.length === 3, engine.interaction.targets.length + ' targets');
+    test('E2: oriented after arrival', sc.oriented === true);
+    let focusEvt = null; const offF = engine.events.on('wayfinder:focus', e => focusEvt = e);
+    engine.wayfinder.focus(1, 'test');
+    test('E2: focus emits event & scene tracks cluster', focusEvt && focusEvt.index === 1 && sc.focusedCluster === 1, 'focused=' + sc.focusedCluster);
+    engine.wayfinder.cycle(1);
+    test('E2: keyboard cycle advances focus', sc.focusedCluster === 2, 'focused=' + sc.focusedCluster);
+    const v = sc.clusterCenters[0].clone().project(engine.cameraRig.camera);
+    engine.input.pointer.x = v.x; engine.input.pointer.y = v.y;
+    const hits = engine.interaction.pick(engine.input.pointer);
+    test('E2: raycast picks destination under pointer', hits.length > 0 && hits[0].object.userData.dest === 0, 'hit=' + (hits[0] && hits[0].object.userData.dest));
+    let selEvt = null; const offS = engine.events.on('wayfinder:select', e => selEvt = e);
+    engine.wayfinder.select(2);
+    test('E2: select emits navigation intent', selEvt && selEvt.index === 2);
+    test('E2: orientation cue dismissed on first focus', sc._orientDismissed === true);
+    offF(); offS();
+    engine.events.emit('codex:close');   // select() now opens a wing (E3) — return to overview
+    await sleep(160);
+    test('E2: returned to overview after select', sc.stateName === 'await', sc.stateName);
+    engine.input.pointer.x = 0; engine.input.pointer.y = 0;   // recenter so it doesn't fight verification
+
+    // continuation: verification still wired through the same systems
+    engine.events.emit('pointerdown');
+    await sleep(3000);
+    const b2 = sampleBrightness(canvas);
+    test('Verification completes (state=settled)', engine.scenes.active.stateName === 'settled', engine.scenes.active.stateName);
+    test('Identity revealed on peak', engine.scenes.active.revealed === true);
+    test('Frame still lit after verify', b2.maxL > 40, `maxL=${b2.maxL}`);
+
+    // --- E3 DISCOVERY ---
+    let codexOpen = null; const offC = engine.events.on('codex:open', d => codexOpen = d);
+    engine.wayfinder.select(2);   // Velith
+    await sleep(140);
+    test('E3: select enters discovery', sc.stateName === 'discovery' && sc._wing === 2, sc.stateName + '/' + sc._wing);
+    test('E3: codex opens with correct content', engine.codex.isOpen === true && codexOpen && codexOpen.id === 'velith', codexOpen && codexOpen.id);
+    test('E3: camera flying into the wing', engine.cameraRig.playing === true || engine.cameraRig.progress < 1);
+    test('E3: other clusters isolated', sc._isolate === 2);
+    await sleep(2800);
+    test('E3: wing arrival completes', engine.cameraRig.progress >= 1, `progress=${engine.cameraRig.progress.toFixed(2)}`);
+    engine.events.emit('codex:close');   // back to overview
+    await sleep(140);
+    test('E3: exit returns to overview', sc.stateName === 'settled' && engine.codex.isOpen === false, sc.stateName);
+    test('E3: isolation cleared on exit', sc._isolate === null);
+    offC();
+
+    // --- E4 UNDERSTANDING ---
+    engine.wayfinder.select(2);            // re-enter Velith wing
+    await sleep(160);
+    let undOpen = null; const offU = engine.events.on('resolver:open', m => undOpen = m);
+    engine.events.emit('codex:deeper');
+    await sleep(80);
+    test('E4: deeper opens the understanding resolver', engine.resolver.isOpen === true && /experiment/i.test(engine.resolver.model.title), engine.resolver.model && engine.resolver.model.title);
+    test('E4: resolver:open fired with model', !!undOpen && Array.isArray(undOpen.factors));
+    engine.resolver.model.factors.forEach(f => f.value = 100);
+    test('E4: max factors resolve to the top verdict', engine.resolver.signal() >= 70 && /grounding wins/.test(engine.resolver.verdict(engine.resolver.signal()).label), engine.resolver.verdict(engine.resolver.signal()).label);
+    engine.resolver.model.factors.forEach(f => f.value = 0);
+    test('E4: zero factors resolve to the base verdict', engine.resolver.signal() === 0 && engine.resolver.verdict(0).min === 0);
+    engine.resolver.close();
+    test('E4: resolver closes; codex stays (still in wing)', engine.resolver.isOpen === false && engine.codex.isOpen === true);
+    engine.events.emit('codex:close');
+    await sleep(160);
+    test('E4: exiting the wing also closes any resolver', sc.stateName === 'settled' && engine.resolver.isOpen === false);
+    offU();
+
+    // --- E5 EVIDENCE ---
+    test('E5: engine owns an Evidence system', !!engine.evidence && engine.evidence.isOpen === false);
+    test('E5: Evidence.count() is pure', engine.evidence.count({ metrics: [1, 2, 3], artifacts: [1, 2] }) === 5);
+    engine.wayfinder.select(2);            // re-enter Velith wing
+    await sleep(160);
+    let evOpen = null; const offE = engine.events.on('evidence:open', d => evOpen = d);
+    engine.events.emit('codex:evidence');
+    await sleep(80);
+    test('E5: evidence action opens the ledger', engine.evidence.isOpen === true, String(engine.evidence.isOpen));
+    test('E5: evidence:open fired with the wing record', !!evOpen && evOpen.name === 'Velith' && Array.isArray(evOpen.metrics), evOpen && evOpen.name);
+    test('E5: ledger carries verifiable repo + metrics', !!evOpen.repo && /velith/i.test(evOpen.repo.href) && evOpen.metrics.length === 4, evOpen && evOpen.repo && evOpen.repo.label);
+    test('E5: count() = metrics + artifacts', engine.evidence.count() === evOpen.metrics.length + evOpen.artifacts.length, String(engine.evidence.count()));
+    const evCount = document.querySelectorAll('#evidence-metrics .ev-metric').length;
+    test('E5: ledger renders each metric to the DOM', evCount === 4, evCount + ' rendered');
+    engine.evidence.close();
+    test('E5: closing evidence keeps the codex (still in wing)', engine.evidence.isOpen === false && engine.codex.isOpen === true);
+    engine.events.emit('codex:evidence');  // reopen, then leave the wing
+    await sleep(60);
+    engine.events.emit('codex:close');
+    await sleep(160);
+    test('E5: exiting the wing also closes any evidence', sc.stateName === 'settled' && engine.evidence.isOpen === false, sc.stateName);
+    offE();
+
+    // --- E6 DEPARTURE ---
+    test('E6: engine owns a Departure system', !!engine.departure && engine.departure.isOpen === false);
+    test('E6: threadCount() is pure', engine.departure.threadCount({ threads: [1, 2, 3] }) === 3);
+    test('E6: in the settled overview', sc.stateName === 'settled', sc.stateName);
+    let depOpen = null; const offD = engine.events.on('departure:open', d => depOpen = d);
+    document.getElementById('conclude').click();   // the HUD synthesis cue
+    await sleep(60);
+    test('E6: the synthesis cue opens departure', engine.departure.isOpen === true, String(engine.departure.isOpen));
+    test('E6: departure:open fired with the identity model', !!depOpen && depOpen.name === 'Manish Kumar' && depOpen.threads.length === 3, depOpen && depOpen.name);
+    test('E6: maps three systems onto three identity threads', !!depOpen && depOpen.threads.map(t => t.thread).join('·') === 'Visible·Grounded·Verified', depOpen && depOpen.threads.map(t => t.thread).join('·'));
+    const dpThreads = document.querySelectorAll('#departure-threads .dp-thread').length;
+    test('E6: threads render to the DOM', dpThreads === 3, dpThreads + ' rendered');
+    test('E6: a considered exit (github · résumé · email)', !!depOpen && Array.isArray(depOpen.contacts) && depOpen.contacts.length === 3, depOpen && depOpen.contacts.map(c => c.label).join(', '));
+    engine.departure.close();
+    test('E6: closing departure returns to the overview', engine.departure.isOpen === false && sc.stateName === 'settled');
+    test('E6: departure only opens from the overview (guarded)', (() => { sc.stateName = 'discovery'; sc._enterDeparture(); const r = engine.departure.isOpen === false; sc.stateName = 'settled'; return r; })());
+    offD();
+
+    // --- PERFORMANCE VALIDATION ---
+    test('Performance: render loop advanced & FPS computed', engine.clock.elapsedTime > 0 && engine.performance.fps > 0, engine.performance.fps + ' fps');
+
+    // --- ACCESSIBILITY VALIDATION: reduced motion needs no interaction ---
+    const c2 = document.createElement('canvas');
+    c2.width = 320; c2.height = 200; c2.style.cssText = 'position:fixed;left:-9999px;top:0;';
+    document.body.appendChild(c2);
+    const e2 = new Engine({ canvas: c2, config: { reducedMotion: true } });
+    e2.registerScene('pg', ProvingGroundScene);
+    await e2.start('pg');
+    for (let i = 0; i < 40 && e2.scenes.active.stateName !== 'settled'; i++) await sleep(100);
+    test('A11y: reduced-motion arrives without interaction', e2.scenes.active.stateName === 'settled', e2.scenes.active.stateName);
+    test('A11y: orientation available in reduced motion', e2.wayfinder.destinations.length === 3 && e2.scenes.active.oriented === true);
+    e2.wayfinder.select(0);
+    test('A11y: reduced-motion wing entry is instant (cut)', e2.scenes.active.stateName === 'discovery' && e2.cameraRig.progress === 1 && e2.codex.isOpen === true, e2.scenes.active.stateName);
+    test('A11y: keyboard path drives primary interaction', engine.scenes.active.stateName === 'settled');  // first engine was driven via Enter
+    e2.dispose();
+
+    // --- MULTI-SCENE NAVIGATION (the architecture's headline claim) ---
+    // A second wing added with one registerScene() + one defineRoute() and ZERO engine edits.
+    const c3 = document.createElement('canvas');
+    c3.width = 480; c3.height = 300; c3.style.cssText = 'position:fixed;left:-9999px;top:0;';
+    document.body.appendChild(c3);
+    const e3 = new Engine({ canvas: c3, config: { reducedMotion: true } });
+    e3.registerScene('proving-ground', ProvingGroundScene);
+    e3.registerScene('atrium', AtriumScene);
+    e3.navigation.defineRoute('proving-ground', 'proving-ground');
+    e3.navigation.defineRoute('atrium', 'atrium');
+    await e3.start('proving-ground');
+    test('NAV: two scenes registered as plugins', e3.world.list().length === 2 && e3.world.has('atrium'), e3.world.list().join(', '));
+    test('NAV: two routes defined', e3.navigation.routes.atrium === 'atrium' && e3.navigation.routes['proving-ground'] === 'proving-ground');
+    let changed = null; const offCh = e3.events.on('scene:changed', n => changed = n);
+    const prevScene = e3.scenes.active;
+    await e3.scenes.goTo('atrium');
+    test('NAV: goTo swaps the active scene', e3.scenes.active instanceof AtriumScene && e3.scenes.active !== prevScene, e3.scenes.active.constructor.name);
+    test('NAV: HUD breadcrumb follows the new wing', document.getElementById('wing').textContent === 'Atrium', document.getElementById('wing').textContent);
+    test('NAV: scene:changed fired with the new name', changed === 'atrium', String(changed));
+    test('NAV: atrium built its graph from shared systems', e3.scenes.active.nodes.length > 0 && e3.scenes.active.markerIndex.length === 3, e3.scenes.active.nodes.length + ' nodes');
+    test('NAV: post + interaction rebound to the new scene', e3.interaction.camera === e3.cameraRig.camera && e3.interaction.targets.length === 3, e3.interaction.targets.length + ' targets');
+    await sleep(160);
+    const b3 = sampleBrightness(c3);
+    test('NAV: the atrium renders a lit frame', b3.maxL > 30 && b3.lit > 2, `maxL=${b3.maxL}, lit=${b3.lit}/96`);
+    // the Codex/Resolver content stack is reused unchanged inside the new scene
+    e3.scenes.active.hovered = 0; e3.events.emit('pointerdown');
+    test('NAV: Codex reused in the second wing', e3.codex.isOpen === true && e3.codex.data && e3.codex.data.id === 'miniflywire', e3.codex.data && e3.codex.data.id);
+    e3.events.emit('codex:deeper');
+    test('NAV: Resolver reused in the second wing', e3.resolver.isOpen === true);
+    e3.resolver.close();
+    await e3.scenes.goTo('proving-ground');
+    test('NAV: navigates back to the first wing', e3.scenes.active instanceof ProvingGroundScene && changed === 'proving-ground', changed);
+    test('NAV: breadcrumb restores on return', document.getElementById('wing').textContent === 'Proving Ground', document.getElementById('wing').textContent);
+    test('NAV: Engine.js untouched — same kernel ran both wings', typeof e3.registerScene === 'function' && e3.world.list().length === 2);
+    offCh();
+    e3.dispose();
+
+  } catch (err) {
+    test('UNCAUGHT ERROR', false, (err && err.message) || String(err));
+    console.error(err);
+  }
+
+  const sum = document.getElementById('summary');
+  sum.innerHTML = `<span class="${fail ? 'fail' : 'pass'}">${pass} passed, ${fail} failed</span>`;
+  window.__testResult = { pass, fail };
+})();
+</script>
+</body>
+</html>

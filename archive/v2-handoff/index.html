@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manish Kumar | Building Intelligent Systems</title>
+<meta name="description" content="Manish Kumar builds intelligent systems from first principles — cognitive architectures, agentic AI, and verification-first engineering. Three flagship systems: MiniFlyWire, Noetica, and Velith.">
+<meta name="author" content="Manish Kumar">
+<meta name="keywords" content="Manish Kumar, AI systems, cognitive architecture, agentic AI, AI engineer, reinforcement learning, memory systems, verification-first AI, interpretable AI, MiniFlyWire, Noetica, Velith, first principles">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#06070B">
+<!-- NOTE: replace manish-kumar.vercel.app below with your real deployed domain so social previews resolve. -->
+<link rel="canonical" href="https://manish-kumar.vercel.app/">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2306070B'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%2322D3EE' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='2.6' fill='%2322D3EE'/%3E%3C/svg%3E">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Manish Kumar — The Observatory">
+<meta property="og:url" content="https://manish-kumar.vercel.app/">
+<meta property="og:title" content="Manish Kumar | Building Intelligent Systems from First Principles">
+<meta property="og:description" content="Cognitive architectures, agentic AI, and verification-first engineering — three flagship systems: MiniFlyWire, Noetica, Velith.">
+<meta property="og:image" content="https://manish-kumar.vercel.app/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Manish Kumar — Building Intelligent Systems from First Principles. MiniFlyWire, Noetica, Velith.">
+<meta property="og:locale" content="en_US">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Manish Kumar | Building Intelligent Systems from First Principles">
+<meta name="twitter:description" content="Cognitive architectures, agentic AI, and verification-first engineering — MiniFlyWire, Noetica, Velith.">
+<meta name="twitter:image" content="https://manish-kumar.vercel.app/assets/og-image.png">
+<meta name="twitter:image:alt" content="Manish Kumar — Building Intelligent Systems from First Principles.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Manish Kumar",
+  "url": "https://manish-kumar.vercel.app/",
+  "description": "Builds intelligent systems from first principles — cognitive architectures, agentic AI, and verification-first engineering.",
+  "knowsAbout": ["Artificial Intelligence","Cognitive Architectures","Agentic AI","Reinforcement Learning","Memory Systems","Interpretable AI","Verification-first Engineering"],
+  "alumniOf": {"@type":"CollegeOrUniversity","name":"Indian Institute of Technology Mandi"},
+  "sameAs": ["https://github.com/manish0360-coder","https://www.linkedin.com/in/manish-kumar-403b9322a/"]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{margin:0;background:#06070B;color:#E7E9F0;font-family:'Space Grotesk',system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;}
+::selection{background:rgba(34,211,238,.28);color:#fff;}
+a{color:inherit;text-decoration:none;}
+::-webkit-scrollbar{width:10px;height:10px;}
+::-webkit-scrollbar-track{background:#06070B;}
+::-webkit-scrollbar-thumb{background:#1a1d28;border-radius:6px;border:2px solid #06070B;}
+::-webkit-scrollbar-thumb:hover{background:#262a38;}
+@keyframes om-twinkle{0%,100%{opacity:.25;}50%{opacity:.7;}}
+@keyframes om-pulse{0%,100%{opacity:.55;}50%{opacity:1;}}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;}*{animation:none!important;transition:none!important;}}
+.hv1:hover{color:#E7E9F0 !important}
+.hv2:hover{color:#E7E9F0 !important}
+.hv3:hover{color:#E7E9F0 !important}
+.hv4:hover{color:#E7E9F0 !important}
+.hv5:hover{background:rgba(34,211,238,.1) !important;border-color:rgba(34,211,238,.6) !important}
+.hv6:hover{background:#5be3f0 !important;transform:translateY(-1px) !important}
+.hv7:hover{border-color:rgba(255,255,255,.42) !important;background:rgba(255,255,255,.03) !important}
+.hv8:hover{border-color:rgba(255,255,255,.42) !important;background:rgba(255,255,255,.03) !important}
+.hv9:hover{background:#0E1018 !important}
+.hv10:hover{background:#0E1018 !important}
+.hv11:hover{background:#0E1018 !important}
+.hv12:hover{background:#0E1018 !important}
+.hv13:hover{background:#0E1018 !important}
+.hv14:hover{background:#0E1018 !important}
+.hv15:hover{background:rgba(34,211,238,.1) !important;border-color:rgba(34,211,238,.6) !important}
+.hv16:hover{background:rgba(52,224,160,.1) !important;border-color:rgba(52,224,160,.6) !important}
+.hv17:hover{background:#5be3f0 !important;transform:translateY(-1px) !important}
+.hv18:hover{border-color:rgba(255,255,255,.42) !important;background:rgba(255,255,255,.03) !important}
+.hv19:hover{background:#0E1018 !important}
+.hv20:hover{background:#0E1018 !important}
+.hv21:hover{background:#0E1018 !important}
+.hv22:hover{background:#0E1018 !important}
+.hv23:hover{background:#0E1018 !important}
+.hv24:hover{color:#E7E9F0 !important}
+.hv25:hover{background:rgba(155,109,255,.1) !important;border-color:rgba(155,109,255,.6) !important}
+.hv26:hover{background:#0E1018 !important}
+</style>
+</head>
+<body>
+<div style="position:relative;min-height:100vh;background:radial-gradient(1200px 800px at 70% -10%, rgba(34,211,238,.05), transparent 60%), radial-gradient(1000px 700px at 10% 20%, rgba(91,140,255,.045), transparent 55%), #06070B;">
+
+  <canvas id="starCanvas" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
+
+  <!-- ===================== NAV ===================== -->
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:50;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,4vw,48px);background:rgba(6,7,11,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.07);">
+    <a href="#top" style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:#E7E9F0;display:flex;align-items:center;gap:10px;">
+      <span style="width:7px;height:7px;border-radius:50%;background:#34E0A0;box-shadow:0 0 10px #34E0A0;animation:om-pulse 3.6s ease-in-out infinite;"></span>
+      Manish Kumar
+    </a>
+    <div style="display:flex;align-items:center;gap:clamp(14px,2.4vw,30px);font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#8C92A2;">
+      <a href="#philosophy" style="transition:color .2s;" data-hv="hv1">Philosophy</a>
+      <a href="#miniflywire" style="transition:color .2s;" data-hv="hv2">MiniFlyWire</a>
+      <a href="#noetica" style="transition:color .2s;" data-hv="hv3">Noetica</a>
+      <a href="#velith" style="transition:color .2s;" data-hv="hv24">Velith</a>
+      <a href="#systems" style="transition:color .2s;" data-hv="hv4">Systems</a>
+      <a href="#contact" style="color:#22D3EE;border:1px solid rgba(34,211,238,.32);padding:7px 14px;border-radius:2px;transition:all .2s;" data-hv="hv5">Contact</a>
+    </div>
+  </nav>
+
+  <main id="top" style="position:relative;z-index:1;">
+
+    <!-- ===================== HERO ===================== -->
+    <section style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;max-width:1180px;margin:0 auto;padding:120px clamp(20px,5vw,48px) 80px;">
+      <div data-reveal style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.24em;text-transform:uppercase;color:#22D3EE;display:flex;align-items:center;gap:12px;margin-bottom:34px;">
+        <span style="width:8px;height:8px;border-radius:50%;border:1px solid #22D3EE;display:inline-flex;align-items:center;justify-content:center;"><span style="width:3px;height:3px;border-radius:50%;background:#22D3EE;box-shadow:0 0 8px #22D3EE;"></span></span>
+        Observatory
+        <span style="color:#565C6B;">//</span>
+        <span style="color:#8C92A2;">Available for research engineering roles</span>
+      </div>
+
+      <h1 data-reveal style="font-size:clamp(2.5rem,6.4vw,5.2rem);line-height:1.02;letter-spacing:-.025em;font-weight:600;margin:0 0 36px;max-width:18ch;">
+        I build AI systems that think — and I make their thinking <span style="color:#22D3EE;">visible.</span>
+      </h1>
+
+      <p data-reveal style="font-size:clamp(1.05rem,2vw,1.35rem);line-height:1.6;color:#A6ACBC;max-width:60ch;margin:0 0 14px;font-weight:400;">
+        Building cognitive architectures and agentic systems from first principles — primitive by primitive, with every decision made visible.
+      </p>
+      <p data-reveal style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.06em;color:#565C6B;margin:0 0 48px;">
+        Minor in AI &amp; Data Science, IIT Mandi · Reinforcement Learning · Memory Systems · Interpretable AI
+      </p>
+
+      <div data-reveal style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;">
+        <a href="#miniflywire" style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;background:#22D3EE;color:#04141a;padding:14px 24px;border-radius:2px;font-weight:600;transition:all .2s;display:flex;align-items:center;gap:10px;" data-hv="hv6">View the work <span style="font-size:15px;">↓</span></a>
+        <a href="https://github.com/manish0360-coder" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(255,255,255,.16);color:#E7E9F0;padding:14px 24px;border-radius:2px;transition:all .2s;" data-hv="hv7">GitHub</a>
+        <a href="assets/Manish-Kumar-Resume.pdf" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(255,255,255,.16);color:#E7E9F0;padding:14px 24px;border-radius:2px;transition:all .2s;" data-hv="hv8">Résumé</a>
+      </div>
+
+      <div data-reveal style="margin-top:auto;padding-top:72px;display:flex;flex-wrap:wrap;gap:28px 44px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.05em;color:#565C6B;border-top:1px solid rgba(255,255,255,.06);">
+        <div><span style="color:#22D3EE;font-size:18px;">3</span> &nbsp;flagship systems</div>
+        <div><span style="color:#34E0A0;font-size:18px;">58</span> &nbsp;tests passing</div>
+        <div><span style="color:#E255D0;font-size:18px;">40+</span> &nbsp;cognitive modules</div>
+        <div><span style="color:#5B8CFF;font-size:18px;">0</span> &nbsp;black boxes</div>
+      </div>
+    </section>
+
+    <!-- ===================== RESEARCH PHILOSOPHY ===================== -->
+    <section id="philosophy" style="scroll-margin-top:80px;max-width:1180px;margin:0 auto;padding:clamp(80px,11vh,150px) clamp(20px,5vw,48px);">
+      <div style="display:grid;grid-template-columns:minmax(0,1fr);gap:14px;">
+        <div data-reveal style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:#565C6B;display:flex;align-items:center;gap:14px;margin-bottom:18px;">
+          <span style="color:#22D3EE;">01</span><span style="width:46px;height:1px;background:rgba(255,255,255,.18);"></span>Research Philosophy
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(40px,6vw,90px);align-items:start;">
+        <div>
+          <h2 data-reveal style="font-size:clamp(1.9rem,4vw,3rem);line-height:1.08;letter-spacing:-.022em;font-weight:600;margin:0 0 4px;">Engineering intelligence from first principles.</h2>
+        </div>
+        <div style="padding-top:6px;">
+          <p data-reveal style="color:#A6ACBC;margin:0 0 22px;max-width:58ch;">I don't start from frameworks. I start from the primitive — the stateless model call, the control loop, the memory that has to survive a context window — and build upward only once each layer is understood and proven.</p>
+          <p data-reveal style="color:#A6ACBC;margin:0 0 38px;max-width:58ch;">Intelligence, to me, isn't a single algorithm but the cooperation of many specialized systems: memory, learning, planning, attention, motivation, uncertainty. My work is making those systems legible — to the machine, and to the people reading it.</p>
+          <div data-reveal style="border-left:2px solid #22D3EE;padding:6px 0 6px 26px;">
+            <p style="font-size:clamp(1.4rem,2.8vw,2rem);line-height:1.25;letter-spacing:-.015em;font-weight:500;margin:0;color:#E7E9F0;">"What cannot be measured should not be claimed."</p>
+            <p style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#565C6B;margin:16px 0 0;">The operating principle behind everything I build</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ENGINEERING PRINCIPLES ===================== -->
+    <section id="principles" style="scroll-margin-top:80px;max-width:1180px;margin:0 auto;padding:clamp(60px,9vh,110px) clamp(20px,5vw,48px);">
+      <div data-reveal style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:#565C6B;display:flex;align-items:center;gap:14px;margin-bottom:40px;">
+        <span style="color:#22D3EE;">02</span><span style="width:46px;height:1px;background:rgba(255,255,255,.18);"></span>Engineering Principles
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.07);border-radius:3px;overflow:hidden;">
+
+        <div data-reveal style="background:#0A0B11;padding:34px 30px;transition:background .25s;" data-hv="hv9">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#565C6B;">P-01</span>
+            <span style="width:26px;height:2px;background:#22D3EE;box-shadow:0 0 10px rgba(34,211,238,.6);"></span>
+          </div>
+          <h3 style="font-size:1.22rem;font-weight:600;letter-spacing:-.01em;margin:0 0 12px;">Measurement Before Intelligence</h3>
+          <p style="color:#8C92A2;font-size:.95rem;margin:0;line-height:1.6;">Evidence precedes every intelligence claim. Observable signals are collected before higher-level reasoning is introduced.</p>
+        </div>
+
+        <div data-reveal style="background:#0A0B11;padding:34px 30px;transition:background .25s;" data-hv="hv10">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#565C6B;">P-02</span>
+            <span style="width:26px;height:2px;background:#5B8CFF;box-shadow:0 0 10px rgba(91,140,255,.6);"></span>
+          </div>
+          <h3 style="font-size:1.22rem;font-weight:600;letter-spacing:-.01em;margin:0 0 12px;">First-Principles Engineering</h3>
+          <p style="color:#8C92A2;font-size:.95rem;margin:0;line-height:1.6;">Hand-roll the primitives — the agent loop, memory, retrieval — before reaching for a framework. Understand why each part exists.</p>
+        </div>
+
+        <div data-reveal style="background:#0A0B11;padding:34px 30px;transition:background .25s;" data-hv="hv11">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#565C6B;">P-03</span>
+            <span style="width:26px;height:2px;background:#34E0A0;box-shadow:0 0 10px rgba(52,224,160,.6);"></span>
+          </div>
+          <h3 style="font-size:1.22rem;font-weight:600;letter-spacing:-.01em;margin:0 0 12px;">Test-Driven Development</h3>
+          <p style="color:#8C92A2;font-size:.95rem;margin:0;line-height:1.6;">Every subsystem is proven by deterministic tests before integration — 58 passing tests, not assumptions.</p>
+        </div>
+
+        <div data-reveal style="background:#0A0B11;padding:34px 30px;transition:background .25s;" data-hv="hv12">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#565C6B;">P-04</span>
+            <span style="width:26px;height:2px;background:#E255D0;box-shadow:0 0 10px rgba(226,85,208,.6);"></span>
+          </div>
+          <h3 style="font-size:1.22rem;font-weight:600;letter-spacing:-.01em;margin:0 0 12px;">Modular Architecture</h3>
+          <p style="color:#8C92A2;font-size:.95rem;margin:0;line-height:1.6;">Independent cognitive subsystems, each with one responsibility — replaceable without rewriting the whole.</p>
+        </div>
+
+        <div data-reveal style="background:#0A0B11;padding:34px 30px;transition:background .25s;" data-hv="hv13">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#565C6B;">P-05</span>
+            <span style="width:26px;height:2px;background:#FB923C;box-shadow:0 0 10px rgba(251,146,60,.6);"></span>
+          </div>
+          <h3 style="font-size:1.22rem;font-weight:600;letter-spacing:-.01em;margin:0 0 12px;">Explainability</h3>
+          <p style="color:#8C92A2;font-size:.95rem;margin:0;line-height:1.6;">Internal reasoning stays visible. Every decision is traceable rather than hidden inside a black box.</p>
+        </div>
+
+        <div data-reveal style="background:#0A0B11;padding:34px 30px;transition:background .25s;" data-hv="hv14">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#565C6B;">P-06</span>
+            <span style="width:26px;height:2px;background:#22D3EE;box-shadow:0 0 10px rgba(34,211,238,.6);"></span>
+          </div>
+          <h3 style="font-size:1.22rem;font-weight:600;letter-spacing:-.01em;margin:0 0 12px;">Validation Before Complexity</h3>
+          <p style="color:#8C92A2;font-size:.95rem;margin:0;line-height:1.6;">Validate individual intelligence before coordinating collective intelligence. Complexity is earned, never assumed.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================== FLAGSHIP I — MINIFLYWIRE ===================== -->
+    <section id="miniflywire" style="scroll-margin-top:60px;border-top:1px solid rgba(255,255,255,.07);background:linear-gradient(180deg, rgba(34,211,238,.03), transparent 30%);">
+      <div style="max-width:1180px;margin:0 auto;padding:clamp(70px,10vh,130px) clamp(20px,5vw,48px);">
+
+        <div data-reveal style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:#565C6B;display:flex;align-items:center;gap:14px;margin-bottom:26px;flex-wrap:wrap;">
+          <span style="color:#22D3EE;">03</span><span style="width:46px;height:1px;background:rgba(255,255,255,.18);"></span>Flagship I
+          <span style="color:#22D3EE;border:1px solid rgba(34,211,238,.3);padding:3px 10px;border-radius:2px;letter-spacing:.14em;">Visual Hero</span>
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:40px;">
+          <div>
+            <h2 data-reveal style="font-size:clamp(2.4rem,5.5vw,4rem);line-height:1;letter-spacing:-.03em;font-weight:600;margin:0 0 18px;">MiniFlyWire</h2>
+            <p data-reveal style="font-size:clamp(1.05rem,2vw,1.3rem);color:#A6ACBC;max-width:54ch;margin:0;">A brain-inspired cognitive architecture rendered as a live 3D observatory — where you can watch an agent learn, remember, reason, and decide in real time.</p>
+          </div>
+          <a data-reveal href="https://github.com/manish0360-coder/AI-intereactive-Brain-inspired-from-Mini-Flywire-" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(34,211,238,.32);color:#22D3EE;padding:13px 22px;border-radius:2px;white-space:nowrap;transition:all .2s;" data-hv="hv15">View Repository ↗</a>
+        </div>
+
+        <!-- HERO VISUAL -->
+        <div data-reveal style="position:relative;border:1px solid rgba(255,255,255,.1);border-radius:4px;overflow:hidden;background:#000;box-shadow:0 30px 80px -30px rgba(0,0,0,.8), 0 0 0 1px rgba(34,211,238,.05);margin-bottom:18px;">
+          <video data-demo src="assets/videos/miniflywire-demo.mp4" poster="assets/miniflywire-hero.png" preload="metadata" style="display:block;width:100%;height:auto;background:#000;"></video>
+          <div style="position:absolute;top:14px;left:16px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(231,233,240,.7);background:rgba(6,7,11,.55);backdrop-filter:blur(6px);padding:5px 10px;border:1px solid rgba(255,255,255,.1);border-radius:2px;display:flex;align-items:center;gap:8px;"><span style="width:6px;height:6px;border-radius:50%;background:#34E0A0;box-shadow:0 0 8px #34E0A0;animation:om-pulse 2.4s ease-in-out infinite;"></span>Live Render · Three.js / WebGL</div>
+        </div>
+        <p data-reveal style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#565C6B;letter-spacing:.04em;margin:0 0 56px;text-align:center;">The Cognitive Observatory — 20 neurons across 5 clusters, an agent walking the graph one thought per step.</p>
+
+        <!-- FACTS STRIP -->
+        <div data-reveal style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.07);border-radius:3px;overflow:hidden;margin-bottom:64px;">
+          <div style="background:#0A0B11;padding:24px 20px;text-align:center;"><div style="font-family:'IBM Plex Mono',monospace;font-size:1.8rem;color:#22D3EE;">20</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#565C6B;margin-top:6px;">Neurons</div></div>
+          <div style="background:#0A0B11;padding:24px 20px;text-align:center;"><div style="font-family:'IBM Plex Mono',monospace;font-size:1.8rem;color:#E255D0;">5</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#565C6B;margin-top:6px;">Clusters</div></div>
+          <div style="background:#0A0B11;padding:24px 20px;text-align:center;"><div style="font-family:'IBM Plex Mono',monospace;font-size:1.8rem;color:#FB923C;">39</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#565C6B;margin-top:6px;">Edges</div></div>
+          <div style="background:#0A0B11;padding:24px 20px;text-align:center;"><div style="font-family:'IBM Plex Mono',monospace;font-size:1.8rem;color:#34E0A0;">40+</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#565C6B;margin-top:6px;">Modules</div></div>
+          <div style="background:#0A0B11;padding:24px 20px;text-align:center;"><div style="font-family:'IBM Plex Mono',monospace;font-size:1.8rem;color:#5B8CFF;">8</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#565C6B;margin-top:6px;">Cognitive Layers</div></div>
+        </div>
+
+        <!-- 8 LAYERS + DECISION PIPELINE -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(32px,5vw,64px);margin-bottom:64px;align-items:start;">
+          <div>
+            <h3 data-reveal style="font-size:1.4rem;font-weight:600;letter-spacing:-.01em;margin:0 0 22px;">Eight cognitive layers</h3>
+            <div data-reveal style="display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.07);border-radius:3px;overflow:hidden;font-family:'IBM Plex Mono',monospace;">
+              <div style="background:#0A0B11;padding:14px 18px;display:flex;gap:14px;align-items:baseline;"><span style="color:#565C6B;font-size:11px;width:18px;">01</span><span style="color:#22D3EE;font-size:13px;width:8px;">●</span><span style="font-size:13.5px;color:#C9CDD8;">Rendering &amp; Scene</span></div>
+              <div style="background:#0A0B11;padding:14px 18px;display:flex;gap:14px;align-items:baseline;"><span style="color:#565C6B;font-size:11px;width:18px;">02</span><span style="color:#8C92A2;font-size:13px;width:8px;">●</span><span style="font-size:13.5px;color:#C9CDD8;">Foundation &amp; Shared Stores</span></div>
+              <div style="background:#0A0B11;padding:14px 18px;display:flex;gap:14px;align-items:baseline;"><span style="color:#565C6B;font-size:11px;width:18px;">03</span><span style="color:#5B8CFF;font-size:13px;width:8px;">●</span><span style="font-size:13.5px;color:#C9CDD8;">Procedural Learning — Q &amp; embeddings</span></div>
+              <div style="background:#0A0B11;padding:14px 18px;display:flex;gap:14px;align-items:baseline;"><span style="color:#565C6B;font-size:11px;width:18px;">04</span><span style="color:#FB923C;font-size:13px;width:8px;">●</span><span style="font-size:13.5px;color:#C9CDD8;">Decision &amp; Arbitration</span></div>
+              <div style="background:#0A0B11;padding:14px 18px;display:flex;gap:14px;align-items:baseline;"><span style="color:#565C6B;font-size:11px;width:18px;">05</span><span style="color:#E255D0;font-size:13px;width:8px;">●</span><span style="font-size:13.5px;color:#C9CDD8;">Affective &amp; Biological State</span></div>
+              <div style="background:#0A0B11;padding:14px 18px;display:flex;gap:14px;align-items:baseline;"><span style="color:#565C6B;font-size:11px;width:18px;">06</span><span style="color:#34E0A0;font-size:13px;width:8px;">●</span><span style="font-size:13.5px;color:#C9CDD8;">Episodic &amp; Semantic Memory</span></div>
+              <div style="background:#0A0B11;padding:14px 18px;display:flex;gap:14px;align-items:baseline;"><span style="color:#565C6B;font-size:11px;width:18px;">07</span><span style="color:#FB923C;font-size:13px;width:8px;">●</span><span style="font-size:13.5px;color:#C9CDD8;">Uncertainty &amp; Prediction</span></div>
+              <div style="background:#0A0B11;padding:14px 18px;display:flex;gap:14px;align-items:baseline;"><span style="color:#565C6B;font-size:11px;width:18px;">08</span><span style="color:#22D3EE;font-size:13px;width:8px;">●</span><span style="font-size:13.5px;color:#C9CDD8;">Cognitive Observatory (HUD)</span></div>
+            </div>
+          </div>
+
+          <div>
+            <h3 data-reveal style="font-size:1.4rem;font-weight:600;letter-spacing:-.01em;margin:0 0 22px;">How a single thought is chosen</h3>
+            <p data-reveal style="color:#A6ACBC;margin:0 0 24px;font-size:.97rem;">Each step, every reachable neighbour is scored by two complementary engines and blended:</p>
+            <div data-reveal style="border:1px solid rgba(255,255,255,.1);border-radius:3px;background:#0A0B11;padding:24px;margin-bottom:20px;">
+              <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;">
+                <div style="flex:0 0 60px;text-align:center;"><div style="font-family:'IBM Plex Mono',monospace;font-size:1.5rem;color:#22D3EE;">60%</div></div>
+                <div><div style="font-weight:600;font-size:.98rem;">Learned linear score</div><div style="color:#8C92A2;font-size:.88rem;font-family:'IBM Plex Mono',monospace;">Q-value · reward · episodic recall</div></div>
+              </div>
+              <div style="height:1px;background:rgba(255,255,255,.08);margin:0 0 18px;"></div>
+              <div style="display:flex;align-items:center;gap:14px;">
+                <div style="flex:0 0 60px;text-align:center;"><div style="font-family:'IBM Plex Mono',monospace;font-size:1.5rem;color:#FB923C;">40%</div></div>
+                <div><div style="font-weight:600;font-size:.98rem;">Competitive arbitration</div><div style="color:#8C92A2;font-size:.88rem;font-family:'IBM Plex Mono',monospace;">dominant motivational drive leads</div></div>
+              </div>
+            </div>
+            <p data-reveal style="color:#565C6B;font-size:.88rem;font-family:'IBM Plex Mono',monospace;margin:0;line-height:1.7;">softmax → epsilon-greedy selection, with exploration boosted by stress and prediction-error surprise.</p>
+          </div>
+        </div>
+
+        <!-- OBSERVATORY HUD RECREATION + SCREENSHOTS -->
+        <h3 data-reveal style="font-size:1.4rem;font-weight:600;letter-spacing:-.01em;margin:0 0 8px;">The Observatory makes every decision legible</h3>
+        <p data-reveal style="color:#A6ACBC;margin:0 0 30px;max-width:64ch;font-size:.97rem;">Nothing is hidden. The HUD exposes the agent's live reasoning — why it moved, which drive dominated, and how confident it is.</p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;">
+          <!-- Recreated WHY THIS MOVE panel -->
+          <div data-reveal style="border:1px solid rgba(255,255,255,.12);border-radius:6px;background:#080A10;padding:24px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#22D3EE;display:flex;align-items:center;gap:8px;"><span style="width:6px;height:6px;border-radius:50%;background:#22D3EE;box-shadow:0 0 8px #22D3EE;"></span>Observatory</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#E255D0;border:1px solid rgba(226,85,208,.4);padding:3px 9px;border-radius:10px;">Exploring</span>
+            </div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:1.15rem;color:#E7E9F0;margin-bottom:4px;">explore → adapt</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#FB923C;margin-bottom:22px;">⚡ Dominant drive: Boredom</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#565C6B;margin-bottom:14px;">Why this move</div>
+            <div style="display:flex;flex-direction:column;gap:11px;">
+              <div style="display:flex;align-items:center;gap:12px;"><span style="width:54px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8C92A2;text-transform:uppercase;letter-spacing:.06em;">Energy</span><div style="flex:1;height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;"><div style="width:92%;height:100%;background:#22D3EE;border-radius:3px;"></div></div></div>
+              <div style="display:flex;align-items:center;gap:12px;"><span style="width:54px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8C92A2;text-transform:uppercase;letter-spacing:.06em;">Reward</span><div style="flex:1;height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;"><div style="width:96%;height:100%;background:#E255D0;border-radius:3px;"></div></div></div>
+              <div style="display:flex;align-items:center;gap:12px;"><span style="width:54px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8C92A2;text-transform:uppercase;letter-spacing:.06em;">Novelty</span><div style="flex:1;height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;"><div style="width:22%;height:100%;background:#9B6DFF;border-radius:3px;"></div></div></div>
+              <div style="display:flex;align-items:center;gap:12px;"><span style="width:54px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8C92A2;text-transform:uppercase;letter-spacing:.06em;">Trust</span><div style="flex:1;height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;"><div style="width:100%;height:100%;background:#34E0A0;border-radius:3px;"></div></div></div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);font-family:'IBM Plex Mono',monospace;">
+              <div style="text-align:center;"><div style="font-size:11px;color:#565C6B;">Q</div><div style="font-size:1rem;color:#22D3EE;">20.0</div></div>
+              <span style="color:#565C6B;">→</span>
+              <div style="text-align:center;"><div style="font-size:11px;color:#565C6B;">FUTURE</div><div style="font-size:1rem;color:#8C92A2;">0.0</div></div>
+              <span style="color:#565C6B;">→</span>
+              <div style="text-align:center;"><div style="font-size:11px;color:#565C6B;">SCORE</div><div style="font-size:1rem;color:#FBBF24;">157.0</div></div>
+            </div>
+          </div>
+
+          <!-- Real screenshots -->
+          <div data-reveal style="display:flex;flex-direction:column;gap:18px;">
+            <div style="border:1px solid rgba(255,255,255,.1);border-radius:6px;overflow:hidden;background:#000;">
+              <img src="assets/miniflywire-observatory.png" alt="Observatory HUD — why this move breakdown" loading="lazy" style="display:block;width:100%;height:auto;">
+            </div>
+            <div style="border:1px solid rgba(255,255,255,.1);border-radius:6px;overflow:hidden;background:#000;">
+              <img src="assets/miniflywire-stream.png" alt="Stream of thought — recent decisions" loading="lazy" style="display:block;width:100%;height:auto;">
+            </div>
+          </div>
+        </div>
+
+        <!-- CLUSTER LEGEND -->
+        <div data-reveal style="margin-top:48px;display:flex;flex-wrap:wrap;gap:10px 24px;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#8C92A2;">
+          <span style="color:#565C6B;">Clusters //</span>
+          <span style="display:flex;align-items:center;gap:8px;"><span style="width:9px;height:9px;border-radius:50%;background:#22D3EE;box-shadow:0 0 8px rgba(34,211,238,.6);"></span>Perception</span>
+          <span style="display:flex;align-items:center;gap:8px;"><span style="width:9px;height:9px;border-radius:50%;background:#E255D0;box-shadow:0 0 8px rgba(226,85,208,.6);"></span>Memory</span>
+          <span style="display:flex;align-items:center;gap:8px;"><span style="width:9px;height:9px;border-radius:50%;background:#FB923C;box-shadow:0 0 8px rgba(251,146,60,.6);"></span>Reasoning</span>
+          <span style="display:flex;align-items:center;gap:8px;"><span style="width:9px;height:9px;border-radius:50%;background:#34E0A0;box-shadow:0 0 8px rgba(52,224,160,.6);"></span>Action</span>
+          <span style="display:flex;align-items:center;gap:8px;"><span style="width:9px;height:9px;border-radius:50%;background:#5B8CFF;box-shadow:0 0 8px rgba(91,140,255,.6);"></span>Learning</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================== FLAGSHIP II — NOETICA ===================== -->
+    <section id="noetica" style="scroll-margin-top:60px;border-top:1px solid rgba(255,255,255,.07);">
+      <div style="max-width:1180px;margin:0 auto;padding:clamp(70px,10vh,130px) clamp(20px,5vw,48px);">
+
+        <div data-reveal style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:#565C6B;display:flex;align-items:center;gap:14px;margin-bottom:26px;flex-wrap:wrap;">
+          <span style="color:#34E0A0;">04</span><span style="width:46px;height:1px;background:rgba(255,255,255,.18);"></span>Flagship II
+          <span style="color:#34E0A0;border:1px solid rgba(52,224,160,.3);padding:3px 10px;border-radius:2px;letter-spacing:.14em;">Engineering Hero</span>
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:48px;">
+          <div>
+            <h2 data-reveal style="font-size:clamp(2.4rem,5.5vw,4rem);line-height:1;letter-spacing:-.03em;font-weight:600;margin:0 0 18px;">Noetica</h2>
+            <p data-reveal style="font-size:clamp(1.05rem,2vw,1.3rem);color:#A6ACBC;max-width:56ch;margin:0;">An evidence-based learning-intelligence engine, built primitive by primitive — modelling what a learner knows, has forgotten, and should study next.</p>
+          </div>
+          <a data-reveal href="https://github.com/manish0360-coder/Noetica-agent-lab" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(52,224,160,.32);color:#34E0A0;padding:13px 22px;border-radius:2px;white-space:nowrap;transition:all .2s;" data-hv="hv16">View Repository ↗</a>
+        </div>
+
+        <!-- CORE INSIGHT -->
+        <div data-reveal style="border:1px solid rgba(255,255,255,.1);border-left:2px solid #34E0A0;border-radius:3px;background:#0A0B11;padding:clamp(28px,4vw,44px);margin-bottom:56px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#565C6B;margin-bottom:16px;">Core insight</div>
+          <p style="font-size:clamp(1.3rem,2.6vw,1.9rem);line-height:1.35;letter-spacing:-.015em;font-weight:500;margin:0;color:#E7E9F0;">The language model is a stateless <span style="color:#34E0A0;">judge</span>. The knowledge about the learner lives in the <span style="color:#34E0A0;">system</span> — not the model.</p>
+        </div>
+
+        <!-- TWO COLUMN: pipeline + verdict -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(32px,5vw,56px);margin-bottom:56px;align-items:start;">
+          <div>
+            <h3 data-reveal style="font-size:1.4rem;font-weight:600;letter-spacing:-.01em;margin:0 0 8px;">The live state path</h3>
+            <p data-reveal style="color:#A6ACBC;font-size:.97rem;margin:0 0 24px;">Exactly one LLM call sits on the path. Everything after judgment is deterministic, testable, and owned by code.</p>
+            <div data-reveal style="display:flex;flex-direction:column;gap:0;font-family:'IBM Plex Mono',monospace;">
+              <div style="display:flex;align-items:center;gap:14px;padding:13px 16px;border:1px solid rgba(255,255,255,.1);border-radius:3px;background:#0A0B11;"><span style="color:#8C92A2;font-size:13px;">answer + question</span></div>
+              <div style="height:18px;width:1px;background:rgba(255,255,255,.16);margin-left:24px;"></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 16px;border:1px solid rgba(251,146,60,.3);border-radius:3px;background:rgba(251,146,60,.05);"><span style="color:#FB923C;font-size:13px;">judge_correctness()</span><span style="color:#565C6B;font-size:10.5px;">qwen3:4b</span></div>
+              <div style="height:18px;width:1px;background:rgba(255,255,255,.16);margin-left:24px;"></div>
+              <div style="display:flex;align-items:center;gap:14px;padding:13px 16px;border:1px solid rgba(52,224,160,.3);border-radius:3px;background:rgba(52,224,160,.05);"><span style="color:#34E0A0;font-size:13px;">Verdict</span><span style="color:#565C6B;font-size:10.5px;">validated contract</span></div>
+              <div style="height:18px;width:1px;background:rgba(255,255,255,.16);margin-left:24px;"></div>
+              <div style="display:flex;align-items:center;gap:14px;padding:13px 16px;border:1px solid rgba(255,255,255,.1);border-radius:3px;background:#0A0B11;"><span style="color:#8C92A2;font-size:13px;">MemoryAgent → KnowledgeState</span><span style="color:#565C6B;font-size:10.5px;">SQLite</span></div>
+              <div style="height:18px;width:1px;background:rgba(255,255,255,.16);margin-left:24px;"></div>
+              <div style="display:flex;align-items:center;gap:14px;padding:13px 16px;border:1px solid rgba(34,211,238,.25);border-radius:3px;background:rgba(34,211,238,.04);"><span style="color:#22D3EE;font-size:13px;">enriched record</span><span style="color:#565C6B;font-size:10.5px;">mastery · recall · basis</span></div>
+            </div>
+          </div>
+
+          <div>
+            <h3 data-reveal style="font-size:1.4rem;font-weight:600;letter-spacing:-.01em;margin:0 0 8px;">Typed contracts, not guesses</h3>
+            <p data-reveal style="color:#A6ACBC;font-size:.97rem;margin:0 0 24px;">The <span style="font-family:'IBM Plex Mono',monospace;color:#34E0A0;font-size:.9em;">Verdict</span> validates at construction — an invalid verdict cannot exist. It's the seam future agents plug into.</p>
+            <div data-reveal style="border:1px solid rgba(255,255,255,.1);border-radius:6px;background:#080A10;overflow:hidden;font-family:'IBM Plex Mono',monospace;font-size:12.5px;line-height:1.85;">
+              <div style="display:flex;align-items:center;gap:7px;padding:11px 16px;border-bottom:1px solid rgba(255,255,255,.08);background:#0C0E15;">
+                <span style="width:10px;height:10px;border-radius:50%;background:#FB5C57;"></span><span style="width:10px;height:10px;border-radius:50%;background:#FBBE2E;"></span><span style="width:10px;height:10px;border-radius:50%;background:#28C840;"></span>
+                <span style="margin-left:8px;color:#565C6B;font-size:11px;">verdict.py</span>
+              </div>
+              <pre style="margin:0;padding:18px 18px;overflow-x:auto;color:#C9CDD8;"><span style="color:#5B8CFF;">Verdict</span>(
+  concept=<span style="color:#34E0A0;">"adding_fractions"</span>,
+  correct=<span style="color:#FB923C;">False</span>,
+  mistake_type=<span style="color:#34E0A0;">"unlike_denominators"</span>,
+  confidence=<span style="color:#22D3EE;">0.92</span>,
+  source=<span style="color:#34E0A0;">"reasoning_agent"</span>,
+)  <span style="color:#565C6B;"># validates on construction</span></pre>
+            </div>
+            <div data-reveal style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;">
+              <div style="flex:1;min-width:130px;border:1px solid rgba(255,255,255,.1);border-radius:3px;background:#0A0B11;padding:16px;">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#565C6B;margin-bottom:8px;">Mastery</div>
+                <div style="font-size:.92rem;color:#C9CDD8;">Durable. Stored. Changes only via one update rule.</div>
+              </div>
+              <div style="flex:1;min-width:130px;border:1px solid rgba(255,255,255,.1);border-radius:3px;background:#0A0B11;padding:16px;">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#565C6B;margin-bottom:8px;">Recall</div>
+                <div style="font-size:.92rem;color:#C9CDD8;">Ephemeral. Computed on read. Never stored.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TEST PROOF + FOUR AGENT VISION -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(32px,5vw,56px);align-items:start;">
+          <div>
+            <h3 data-reveal style="font-size:1.4rem;font-weight:600;letter-spacing:-.01em;margin:0 0 8px;">Proven, not promised</h3>
+            <p data-reveal style="color:#A6ACBC;font-size:.97rem;margin:0 0 24px;">Confidence is built bottom-up: pure math → contracts → wiring → the real model last.</p>
+            <div data-reveal style="border:1px solid rgba(255,255,255,.1);border-radius:6px;background:#080A10;overflow:hidden;font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.9;">
+              <div style="padding:11px 16px;border-bottom:1px solid rgba(255,255,255,.08);background:#0C0E15;color:#565C6B;font-size:11px;">pytest -v</div>
+              <pre style="margin:0;padding:16px 18px;overflow-x:auto;color:#8C92A2;">tests/test_concepts.py <span style="color:#34E0A0;">............</span>
+tests/test_forgetting.py <span style="color:#34E0A0;">............</span>
+tests/test_knowledge_state.py <span style="color:#34E0A0;">................</span>
+tests/test_verdict.py <span style="color:#34E0A0;">........</span>
+tests/test_memory_agent_verdict.py <span style="color:#34E0A0;">.....</span>
+<span style="color:#565C6B;">─────────────────────────────────</span>
+<span style="color:#34E0A0;">58 passed</span>, <span style="color:#FBBF24;">5 skipped</span> <span style="color:#565C6B;">in 17.54s</span></pre>
+            </div>
+          </div>
+
+          <div>
+            <h3 data-reveal style="font-size:1.4rem;font-weight:600;letter-spacing:-.01em;margin:0 0 8px;">The architecture it's built toward</h3>
+            <p data-reveal style="color:#A6ACBC;font-size:.97rem;margin:0 0 24px;">Four cognitive agents collaborating over typed contracts. Each future agent is an additive change — never a rewrite.</p>
+            <div data-reveal style="display:flex;flex-direction:column;gap:14px;">
+              <div style="border:1px dashed rgba(255,255,255,.16);border-radius:3px;background:#0A0B11;padding:13px 16px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#8C92A2;">Agent Orchestrator</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                <div style="border:1px solid rgba(91,140,255,.3);border-radius:3px;background:rgba(91,140,255,.05);padding:14px;text-align:center;"><div style="font-weight:600;font-size:.95rem;color:#5B8CFF;">Knowledge</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#565C6B;letter-spacing:.06em;margin-top:4px;">RAG · grounding</div></div>
+                <div style="border:1px solid rgba(251,146,60,.3);border-radius:3px;background:rgba(251,146,60,.05);padding:14px;text-align:center;"><div style="font-weight:600;font-size:.95rem;color:#FB923C;">Reasoning</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#565C6B;letter-spacing:.06em;margin-top:4px;">error analysis</div></div>
+                <div style="border:1px solid rgba(52,224,160,.34);border-radius:3px;background:rgba(52,224,160,.06);padding:14px;text-align:center;"><div style="font-weight:600;font-size:.95rem;color:#34E0A0;">Memory</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#565C6B;letter-spacing:.06em;margin-top:4px;">state · forgetting</div><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#34E0A0;letter-spacing:.1em;margin-top:6px;">● BUILT</div></div>
+                <div style="border:1px solid rgba(226,85,208,.3);border-radius:3px;background:rgba(226,85,208,.05);padding:14px;text-align:center;"><div style="font-weight:600;font-size:.95rem;color:#E255D0;">Planner</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#565C6B;letter-spacing:.06em;margin-top:4px;">next action</div></div>
+              </div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#565C6B;text-align:center;letter-spacing:.06em;">Knowledge → Reasoning → Memory → Planner</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- NOETICA TECH STRIP -->
+        <div data-reveal style="margin-top:48px;display:flex;flex-wrap:wrap;gap:10px 24px;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#8C92A2;border-top:1px solid rgba(255,255,255,.06);padding-top:28px;">
+          <span style="color:#565C6B;">Stack //</span>
+          <span>Python</span><span style="color:#565C6B;">·</span>
+          <span>Ollama</span><span style="color:#565C6B;">·</span>
+          <span>Qwen3:4B / 2.5:3B</span><span style="color:#565C6B;">·</span>
+          <span>SQLite</span><span style="color:#565C6B;">·</span>
+          <span>pytest</span><span style="color:#565C6B;">·</span>
+          <span style="color:#565C6B;">no frameworks, by design</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================== FLAGSHIP III — VELITH ===================== -->
+    <section id="velith" style="scroll-margin-top:60px;border-top:1px solid rgba(255,255,255,.07);background:linear-gradient(180deg, rgba(155,109,255,.045), transparent 32%);">
+      <div style="max-width:1180px;margin:0 auto;padding:clamp(70px,10vh,130px) clamp(20px,5vw,48px);">
+
+        <div data-reveal style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:#565C6B;display:flex;align-items:center;gap:14px;margin-bottom:26px;flex-wrap:wrap;">
+          <span style="color:#9B6DFF;">05</span><span style="width:46px;height:1px;background:rgba(255,255,255,.18);"></span>Flagship III
+          <span style="color:#9B6DFF;border:1px solid rgba(155,109,255,.32);padding:3px 10px;border-radius:2px;letter-spacing:.14em;">Research Frontier</span>
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:48px;">
+          <div>
+            <h2 data-reveal style="font-size:clamp(2.4rem,5.5vw,4rem);line-height:1;letter-spacing:-.03em;font-weight:600;margin:0 0 18px;">Velith</h2>
+            <p data-reveal style="font-size:clamp(1.05rem,2vw,1.3rem);color:#A6ACBC;max-width:58ch;margin:0;">A grounded, verification-first engineering intelligence — built so competence can only come from what an external verifier will admit. Near-term: a general engineering loop. North star: manufacturing intelligence.</p>
+          </div>
+          <a data-reveal href="https://github.com/manish0360-coder/Velith" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(155,109,255,.34);color:#9B6DFF;padding:13px 22px;border-radius:2px;white-space:nowrap;transition:all .2s;" data-hv="hv25">View Repository ↗</a>
+        </div>
+
+        <!-- CORE THESIS -->
+        <div data-reveal style="border:1px solid rgba(255,255,255,.1);border-left:2px solid #9B6DFF;border-radius:3px;background:#0A0B11;padding:clamp(28px,4vw,44px);margin-bottom:56px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#565C6B;margin-bottom:16px;">Core thesis</div>
+          <p style="font-size:clamp(1.3rem,2.6vw,1.9rem);line-height:1.35;letter-spacing:-.015em;font-weight:500;margin:0;color:#E7E9F0;">Truth is <span style="color:#9B6DFF;">exogenous</span>. No claim is trusted because a model produced it fluently — only when an external verifier admits it. Velith makes competence <span style="color:#9B6DFF;">earned, not asserted</span>.</p>
+        </div>
+
+        <!-- TWO COLUMN: experiment arms + state-centric -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(32px,5vw,56px);margin-bottom:56px;align-items:start;">
+          <div>
+            <h3 data-reveal style="font-size:1.4rem;font-weight:600;letter-spacing:-.01em;margin:0 0 8px;">The falsifiable experiment</h3>
+            <p data-reveal style="color:#A6ACBC;font-size:.97rem;margin:0 0 24px;">One question V0.1 exists to answer: can a grounded agent measurably improve its <em style="color:#E7E9F0;font-style:normal;">held-out</em> performance through verified experience? The design is differential — only the memory write-filter changes between arms.</p>
+            <div data-reveal style="display:flex;flex-direction:column;gap:8px;font-family:'IBM Plex Mono',monospace;">
+              <div style="display:flex;gap:14px;align-items:baseline;padding:12px 16px;border:1px solid rgba(255,255,255,.1);border-radius:3px;background:#0A0B11;"><span style="color:#565C6B;font-size:12px;width:24px;">A0</span><span style="font-size:13px;color:#C9CDD8;">Cold — no memory</span><span style="margin-left:auto;color:#565C6B;font-size:10.5px;">baseline</span></div>
+              <div style="display:flex;gap:14px;align-items:baseline;padding:12px 16px;border:1px solid rgba(255,255,255,.1);border-radius:3px;background:#0A0B11;"><span style="color:#565C6B;font-size:12px;width:24px;">A1</span><span style="font-size:13px;color:#C9CDD8;">Unfiltered — every attempt kept</span><span style="margin-left:auto;color:#565C6B;font-size:10.5px;">RAG control</span></div>
+              <div style="display:flex;gap:14px;align-items:baseline;padding:12px 16px;border:1px solid rgba(155,109,255,.4);border-radius:3px;background:rgba(155,109,255,.06);"><span style="color:#9B6DFF;font-size:12px;width:24px;">A2</span><span style="font-size:13px;color:#E7E9F0;">Verified — only what passed</span><span style="margin-left:auto;color:#9B6DFF;font-size:10.5px;letter-spacing:.06em;">TREATMENT</span></div>
+              <div style="display:flex;gap:14px;align-items:baseline;padding:12px 16px;border:1px solid rgba(255,255,255,.1);border-radius:3px;background:#0A0B11;"><span style="color:#565C6B;font-size:12px;width:24px;">A3</span><span style="font-size:13px;color:#C9CDD8;">Anti-grounding — belief, never run</span><span style="margin-left:auto;color:#565C6B;font-size:10.5px;">self-confidence</span></div>
+              <div style="display:flex;gap:14px;align-items:baseline;padding:12px 16px;border:1px solid rgba(255,255,255,.1);border-radius:3px;background:#0A0B11;"><span style="color:#565C6B;font-size:12px;width:24px;">A4</span><span style="font-size:13px;color:#C9CDD8;">Success-only — isolates failure-learning</span><span style="margin-left:auto;color:#565C6B;font-size:10.5px;">ablation</span></div>
+            </div>
+            <p data-reveal style="color:#9B6DFF;font-size:.88rem;font-family:'IBM Plex Mono',monospace;margin:18px 0 0;line-height:1.7;">Decisive criterion: A2 must strictly beat A1 — otherwise grounding adds nothing over retrieval.</p>
+          </div>
+
+          <div>
+            <h3 data-reveal style="font-size:1.4rem;font-weight:600;letter-spacing:-.01em;margin:0 0 8px;">State-centric by design</h3>
+            <p data-reveal style="color:#A6ACBC;font-size:.97rem;margin:0 0 24px;">A persistent, typed, provenance-tracked state is the substrate. Generators, verifiers, planners, and learners are typed transformations over it. LLMs are <span style="color:#9B6DFF;">components, not the architecture</span>.</p>
+            <div data-reveal style="display:flex;flex-direction:column;gap:0;font-family:'IBM Plex Mono',monospace;">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 16px;border:1px solid rgba(34,211,238,.25);border-radius:3px;background:rgba(34,211,238,.04);"><span style="color:#22D3EE;font-size:13px;">Shared typed state</span><span style="color:#565C6B;font-size:10.5px;">provenance-tracked</span></div>
+              <div style="height:18px;width:1px;background:rgba(255,255,255,.16);margin-left:24px;"></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                <div style="padding:11px 14px;border:1px solid rgba(255,255,255,.1);border-radius:3px;background:#0A0B11;color:#8C92A2;font-size:12px;text-align:center;">Generate</div>
+                <div style="padding:11px 14px;border:1px solid rgba(255,255,255,.1);border-radius:3px;background:#0A0B11;color:#8C92A2;font-size:12px;text-align:center;">Plan</div>
+                <div style="padding:11px 14px;border:1px solid rgba(255,255,255,.1);border-radius:3px;background:#0A0B11;color:#8C92A2;font-size:12px;text-align:center;">Learn</div>
+                <div style="padding:11px 14px;border:1px solid rgba(155,109,255,.3);border-radius:3px;background:rgba(155,109,255,.05);color:#9B6DFF;font-size:12px;text-align:center;">Verify</div>
+              </div>
+              <div style="height:18px;width:1px;background:rgba(255,255,255,.16);margin-left:24px;"></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 16px;border:1px solid rgba(155,109,255,.34);border-radius:3px;background:rgba(155,109,255,.06);"><span style="color:#9B6DFF;font-size:13px;">Deterministic verifier</span><span style="color:#565C6B;font-size:10.5px;">zero model-gap</span></div>
+            </div>
+            <p data-reveal style="color:#565C6B;font-size:.88rem;font-family:'IBM Plex Mono',monospace;margin:18px 0 0;line-height:1.7;">compile + run hidden tests + static analysis → a bit-for-bit reproducible verdict, no model judging correctness.</p>
+          </div>
+        </div>
+
+        <!-- MIGRATION LADDER -->
+        <h3 data-reveal style="font-size:1.4rem;font-weight:600;letter-spacing:-.01em;margin:0 0 8px;">The migration ladder</h3>
+        <p data-reveal style="color:#A6ACBC;margin:0 0 12px;max-width:64ch;font-size:.97rem;">Generality is earned by climbing a pre-committed gradient of verification difficulty — so “software-first” never quietly becomes “software-only.”</p>
+        <div data-reveal style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#565C6B;margin-bottom:14px;">Widening model-gap →</div>
+        <div data-reveal style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.07);border-radius:3px;overflow:hidden;margin-bottom:56px;">
+          <div style="background:#0A0B11;padding:22px 20px;border-top:2px solid #9B6DFF;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#565C6B;">01</span><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;color:#9B6DFF;border:1px solid rgba(155,109,255,.4);padding:2px 7px;border-radius:10px;">V0.1 · IN PROGRESS</span></div>
+            <div style="font-size:1.02rem;font-weight:600;margin-bottom:6px;">Software</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8C92A2;line-height:1.6;">Repo-level SWE · zero model-gap · external held-out benchmark</div>
+          </div>
+          <div style="background:#0A0B11;padding:22px 20px;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#565C6B;margin-bottom:12px;">02</div>
+            <div style="font-size:1.02rem;font-weight:600;margin-bottom:6px;color:#C9CDD8;">Electronics / PCB</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8C92A2;line-height:1.6;">First deliberate model-gap · manufacturable Gerbers</div>
+          </div>
+          <div style="background:#0A0B11;padding:22px 20px;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#565C6B;margin-bottom:12px;">03</div>
+            <div style="font-size:1.02rem;font-weight:600;margin-bottom:6px;color:#C9CDD8;">HDL / Firmware</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8C92A2;line-height:1.6;">Exhaustive formal verification · timing constraints</div>
+          </div>
+          <div style="background:#0A0B11;padding:22px 20px;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#565C6B;margin-bottom:12px;">04</div>
+            <div style="font-size:1.02rem;font-weight:600;margin-bottom:6px;color:#C9CDD8;">Mechanical → Manufacturing</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8C92A2;line-height:1.6;">FEA-approximate ground truth · the north star</div>
+          </div>
+        </div>
+
+        <!-- STATUS + STACK STRIP -->
+        <div data-reveal style="display:flex;flex-wrap:wrap;gap:10px 24px;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#8C92A2;border-top:1px solid rgba(255,255,255,.06);padding-top:28px;">
+          <span style="color:#565C6B;">Stack //</span>
+          <span>Python 3.12</span><span style="color:#565C6B;">·</span>
+          <span>Docker</span><span style="color:#565C6B;">·</span>
+          <span>WSL2 / Ubuntu</span><span style="color:#565C6B;">·</span>
+          <span>Ollama</span><span style="color:#565C6B;">·</span>
+          <span>SWE-bench-Verified-style</span><span style="color:#565C6B;">·</span>
+          <span style="color:#565C6B;">M0–M10 roadmap, implementation-first</span>
+        </div>
+        <p data-reveal style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#565C6B;letter-spacing:.04em;margin:18px 0 0;">Lineage · developed during review under the working name “Mini Prometheus.”</p>
+
+      </div>
+    </section>
+
+    <!-- ===================== SYSTEMS & CAPABILITIES ===================== -->
+    <section id="systems" style="scroll-margin-top:80px;border-top:1px solid rgba(255,255,255,.07);background:#08090E;">
+      <div style="max-width:1180px;margin:0 auto;padding:clamp(70px,10vh,120px) clamp(20px,5vw,48px);">
+        <div data-reveal style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:#565C6B;display:flex;align-items:center;gap:14px;margin-bottom:14px;">
+          <span style="color:#22D3EE;">06</span><span style="width:46px;height:1px;background:rgba(255,255,255,.18);"></span>Systems &amp; Capabilities
+        </div>
+        <h2 data-reveal style="font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.08;letter-spacing:-.02em;font-weight:600;margin:0 0 48px;max-width:20ch;">The vocabulary I build with.</h2>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:36px;">
+          <div data-reveal>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#5B8CFF;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid rgba(91,140,255,.25);">Learning</div>
+            <div style="display:flex;flex-direction:column;gap:11px;color:#A6ACBC;font-size:.95rem;">
+              <span>Reinforcement learning (Q-learning)</span><span>Embedding-based similarity</span><span>Momentum &amp; trust memory</span><span>Experience replay</span>
+            </div>
+          </div>
+          <div data-reveal>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#34E0A0;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid rgba(52,224,160,.25);">Memory</div>
+            <div style="display:flex;flex-direction:column;gap:11px;color:#A6ACBC;font-size:.95rem;">
+              <span>Episodic &amp; semantic memory</span><span>Working memory &amp; segmentation</span><span>Long-term consolidation</span><span>Forgetting / decay models</span>
+            </div>
+          </div>
+          <div data-reveal>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#FB923C;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid rgba(251,146,60,.25);">Decision &amp; Reasoning</div>
+            <div style="display:flex;flex-direction:column;gap:11px;color:#A6ACBC;font-size:.95rem;">
+              <span>Executive arbitration</span><span>Goal-oriented planning</span><span>Cognitive attention</span><span>Uncertainty &amp; prediction error</span>
+            </div>
+          </div>
+          <div data-reveal>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#E255D0;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid rgba(226,85,208,.25);">Engineering</div>
+            <div style="display:flex;flex-direction:column;gap:11px;color:#A6ACBC;font-size:.95rem;">
+              <span>Test-driven development</span><span>Typed contracts &amp; validation</span><span>Provider-agnostic LLM seam</span><span>Deterministic, testable cores</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section id="about" style="scroll-margin-top:80px;border-top:1px solid rgba(255,255,255,.07);">
+      <div style="max-width:1180px;margin:0 auto;padding:clamp(70px,10vh,120px) clamp(20px,5vw,48px);">
+        <div data-reveal style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:#565C6B;display:flex;align-items:center;gap:14px;margin-bottom:40px;">
+          <span style="color:#22D3EE;">07</span><span style="width:46px;height:1px;background:rgba(255,255,255,.18);"></span>About
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(40px,6vw,90px);align-items:start;">
+          <div data-reveal>
+            <h2 style="font-size:clamp(1.7rem,3.4vw,2.6rem);line-height:1.12;letter-spacing:-.02em;font-weight:600;margin:0;">Manish Kumar</h2>
+            <p style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#565C6B;margin:18px 0 32px;">Building intelligent systems · IIT Mandi</p>
+            <div style="border:1px solid rgba(255,255,255,.1);border-radius:4px;background:#0A0B11;padding:22px 22px;max-width:380px;">
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#565C6B;display:flex;align-items:center;gap:9px;margin-bottom:18px;"><span style="width:6px;height:6px;border-radius:50%;background:#34E0A0;box-shadow:0 0 8px #34E0A0;animation:om-pulse 3.6s ease-in-out infinite;"></span>Currently</div>
+              <div style="display:flex;flex-direction:column;gap:14px;">
+                <div style="display:flex;gap:12px;align-items:flex-start;"><span style="flex:0 0 auto;width:6px;height:6px;border-radius:50%;background:#34E0A0;margin-top:7px;"></span><span style="font-size:.95rem;color:#C9CDD8;line-height:1.5;">Expanding Noetica's cognitive architecture</span></div>
+                <div style="display:flex;gap:12px;align-items:flex-start;"><span style="flex:0 0 auto;width:6px;height:6px;border-radius:50%;background:#22D3EE;margin-top:7px;"></span><span style="font-size:.95rem;color:#C9CDD8;line-height:1.5;">Advancing MiniFlyWire's interactive intelligence simulation</span></div>
+                <div style="display:flex;gap:12px;align-items:flex-start;"><span style="flex:0 0 auto;width:6px;height:6px;border-radius:50%;background:#9B6DFF;margin-top:7px;"></span><span style="font-size:.95rem;color:#C9CDD8;line-height:1.5;">Architecting Velith — a verification-first engineering intelligence</span></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p data-reveal style="color:#A6ACBC;margin:0 0 22px;max-width:62ch;">Artificial intelligence drew me in through a single question: how does intelligence actually emerge? I'm less interested in using AI to automate tasks than in understanding how machines learn, how memory shapes decisions, how reasoning develops, and how multiple cognitive systems cooperate.</p>
+            <p data-reveal style="color:#A6ACBC;margin:0 0 22px;max-width:62ch;">So rather than building conventional software, I build systems that make intelligence visible. MiniFlyWire, Noetica, and Velith trace one progression — making intelligence visible, grounding it in evidence, then holding it to an external verifier. For me, engineering is a way to <em style="color:#E7E9F0;font-style:normal;">study</em> intelligence — not just to implement algorithms.</p>
+            <p data-reveal style="color:#A6ACBC;margin:0 0 36px;max-width:62ch;">Science fiction first sparked my curiosity; engineering turned it into purpose. I believe AI should strengthen human capability rather than replace it — helping people learn, think, create, and solve problems we can't yet solve. Every project I build is an attempt to make intelligent systems more useful, more understandable, and more aligned with the people who use them.</p>
+            <div data-reveal style="border-left:2px solid #22D3EE;padding:4px 0 4px 24px;margin-bottom:36px;">
+              <p style="font-size:clamp(1.15rem,2.3vw,1.55rem);line-height:1.32;letter-spacing:-.012em;font-weight:500;margin:0;color:#E7E9F0;">I don't see AI as the destination. I see it as our most powerful tool for understanding ourselves — and for solving problems today's world cannot yet solve.</p>
+            </div>
+            <div data-reveal style="display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#8C92A2;border-top:1px solid rgba(255,255,255,.06);padding-top:24px;">
+              <span style="color:#565C6B;">Interests //</span>
+              <span>Cognitive architectures</span><span style="color:#565C6B;">·</span>
+              <span>Memory systems</span><span style="color:#565C6B;">·</span>
+              <span>AI agents</span><span style="color:#565C6B;">·</span>
+              <span>Reasoning</span><span style="color:#565C6B;">·</span>
+              <span>Reinforcement learning</span><span style="color:#565C6B;">·</span>
+              <span>Explainable AI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section id="contact" style="scroll-margin-top:60px;border-top:1px solid rgba(255,255,255,.07);background:radial-gradient(900px 500px at 50% 120%, rgba(34,211,238,.08), transparent 60%);">
+      <div style="max-width:1180px;margin:0 auto;padding:clamp(80px,12vh,150px) clamp(20px,5vw,48px);text-align:center;">
+        <div data-reveal style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:#565C6B;display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:30px;">
+          <span style="color:#22D3EE;">08</span><span style="width:46px;height:1px;background:rgba(255,255,255,.18);"></span>Contact
+        </div>
+        <h2 data-reveal style="font-size:clamp(2rem,5vw,3.6rem);line-height:1.05;letter-spacing:-.025em;font-weight:600;margin:0 0 24px;max-width:18ch;margin-left:auto;margin-right:auto;">Let's build intelligent systems.</h2>
+        <p data-reveal style="color:#A6ACBC;font-size:1.1rem;margin:0 auto 44px;max-width:48ch;">Open to AI engineering and research roles at frontier labs. The fastest way to reach me is email.</p>
+
+        <div data-reveal style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-bottom:56px;">
+          <a href="mailto:manishyaduvansh0360@gmail.com" style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;background:#22D3EE;color:#04141a;padding:15px 28px;border-radius:2px;font-weight:600;transition:all .2s;" data-hv="hv17">Email me ↗</a>
+          <a href="assets/Manish-Kumar-Resume.pdf" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(255,255,255,.16);color:#E7E9F0;padding:15px 28px;border-radius:2px;transition:all .2s;" data-hv="hv18">Résumé</a>
+        </div>
+
+        <div data-reveal style="display:flex;flex-wrap:wrap;gap:0;justify-content:center;border:1px solid rgba(255,255,255,.08);border-radius:3px;overflow:hidden;max-width:760px;margin:0 auto;">
+          <a href="mailto:manishyaduvansh0360@gmail.com" style="flex:1;min-width:200px;padding:22px 20px;background:#0A0B11;border-right:1px solid rgba(255,255,255,.08);transition:background .2s;text-align:left;" data-hv="hv19">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#565C6B;margin-bottom:8px;">Email</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#22D3EE;word-break:break-all;">manishyaduvansh0360@gmail.com</div>
+          </a>
+          <a href="https://github.com/manish0360-coder" target="_blank" rel="noopener" style="flex:1;min-width:200px;padding:22px 20px;background:#0A0B11;border-right:1px solid rgba(255,255,255,.08);transition:background .2s;text-align:left;" data-hv="hv20">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#565C6B;margin-bottom:8px;">GitHub</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#E7E9F0;">manish0360-coder</div>
+          </a>
+          <a href="https://www.linkedin.com/in/manish-kumar-403b9322a/" target="_blank" rel="noopener" style="flex:1;min-width:200px;padding:22px 20px;background:#0A0B11;text-align:left;transition:background .2s;" data-hv="hv21">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#565C6B;margin-bottom:8px;">LinkedIn</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#E7E9F0;">manish-kumar</div>
+          </a>
+        </div>
+
+        <div data-reveal style="margin:26px auto 0;max-width:760px;border:1px solid rgba(255,255,255,.08);border-radius:3px;overflow:hidden;display:flex;flex-wrap:wrap;">
+          <div style="flex:0 0 auto;padding:20px 22px;background:#0A0B11;border-right:1px solid rgba(255,255,255,.08);display:flex;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#565C6B;">Featured Repos</div>
+          <a href="https://github.com/manish0360-coder/AI-intereactive-Brain-inspired-from-Mini-Flywire-" target="_blank" rel="noopener" style="flex:1;min-width:180px;padding:20px 22px;background:#0A0B11;border-right:1px solid rgba(255,255,255,.08);text-align:left;transition:background .2s;" data-hv="hv22">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#22D3EE;display:flex;align-items:center;justify-content:space-between;gap:10px;">MiniFlyWire <span style="color:#565C6B;">↗</span></div>
+          </a>
+          <a href="https://github.com/manish0360-coder/Noetica-agent-lab" target="_blank" rel="noopener" style="flex:1;min-width:180px;padding:20px 22px;background:#0A0B11;border-right:1px solid rgba(255,255,255,.08);text-align:left;transition:background .2s;" data-hv="hv23">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#34E0A0;display:flex;align-items:center;justify-content:space-between;gap:10px;">Noetica Agent Lab <span style="color:#565C6B;">↗</span></div>
+          </a>
+          <a href="https://github.com/manish0360-coder/Velith" target="_blank" rel="noopener" style="flex:1;min-width:180px;padding:20px 22px;background:#0A0B11;text-align:left;transition:background .2s;" data-hv="hv26">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#9B6DFF;display:flex;align-items:center;justify-content:space-between;gap:10px;">Velith <span style="color:#565C6B;">↗</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer style="border-top:1px solid rgba(255,255,255,.07);">
+      <div style="max-width:1180px;margin:0 auto;padding:34px clamp(20px,5vw,48px);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.08em;color:#565C6B;">
+        <span>© 2026 Manish Kumar</span>
+        <span style="display:flex;align-items:center;gap:9px;"><span style="width:6px;height:6px;border-radius:50%;background:#34E0A0;box-shadow:0 0 8px #34E0A0;animation:om-pulse 3.6s ease-in-out infinite;"></span>The Observatory · Built from first principles</span>
+      </div>
+    </footer>
+
+  </main>
+</div>
+<script>
+(function(){
+  // Attach generated hover classes
+  document.querySelectorAll('[data-hv]').forEach(function(el){ el.classList.add(el.getAttribute('data-hv')); });
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---- Scroll reveal (bulletproof: never leaves content hidden) ----
+  (function(){
+    var els = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+    els.forEach(function(el){
+      el.style.opacity='0'; el.style.transform='translateY(16px)';
+      el.style.transition='opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1)';
+      el.style.willChange='opacity, transform';
+    });
+    var fade=function(el){ el.style.opacity='1'; el.style.transform='none'; };
+    var snap=function(el){ el.style.transition='none'; el.style.opacity='1'; el.style.transform='none'; };
+    if(reduce || !('IntersectionObserver' in window)){ els.forEach(snap); return; }
+    var revealed=0;
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ fade(e.target); io.unobserve(e.target); revealed++; } });
+    },{threshold:0.1, rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(el){ io.observe(el); });
+    // Health check: if IO never fired (offscreen/frozen frame), snap everything visible so content is never lost.
+    setTimeout(function(){ if(revealed===0){ try{io.disconnect();}catch(e){} els.forEach(snap); } }, 1600);
+  })();
+
+  // ---- Demo video: muted autoplay loop ----
+  (function(){
+    var v=document.querySelector('video[data-demo]');
+    if(!v) return;
+    v.muted=true; v.setAttribute('muted',''); v.playsInline=true; v.setAttribute('playsinline','');
+    if(reduce){ v.controls=true; return; }
+    v.loop=true; v.autoplay=true;
+    var p=v.play(); if(p&&p.catch) p.catch(function(){ v.controls=true; });
+  })();
+
+  // ---- Starfield ----
+  (function(){
+    var canvas=document.getElementById('starCanvas');
+    if(!canvas||typeof canvas.getContext!=='function') return;
+    var ctx=canvas.getContext('2d');
+    var w,h,dpr,stars,raf;
+    var COLORS=['rgba(231,233,240,','rgba(34,211,238,','rgba(91,140,255,','rgba(226,85,208,'];
+    function build(){
+      dpr=Math.min(window.devicePixelRatio||1,2);
+      w=canvas.clientWidth; h=canvas.clientHeight;
+      canvas.width=Math.floor(w*dpr); canvas.height=Math.floor(h*dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      var count=Math.min(150,Math.floor((w*h)/12000));
+      stars=[];
+      for(var i=0;i<count;i++){
+        var bias=Math.random();
+        var color=bias>0.86?COLORS[1+Math.floor(Math.random()*3)]:COLORS[0];
+        stars.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.1+0.25,base:Math.random()*0.35+0.12,amp:Math.random()*0.35,sp:Math.random()*0.0007+0.0002,ph:Math.random()*Math.PI*2,color:color});
+      }
+    }
+    function draw(t){
+      ctx.clearRect(0,0,w,h);
+      for(var i=0;i<stars.length;i++){
+        var s=stars[i];
+        var tw=reduce?s.base:s.base+s.amp*(0.5+0.5*Math.sin(t*s.sp+s.ph));
+        ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+        ctx.fillStyle=s.color+Math.max(0,Math.min(1,tw)).toFixed(3)+')'; ctx.fill();
+      }
+      raf=requestAnimationFrame(draw);
+    }
+    window.addEventListener('resize', build);
+    build();
+    if(reduce){ draw(0); if(raf) cancelAnimationFrame(raf); } else { raf=requestAnimationFrame(draw); }
+  })();
+})();
+</script>
+</body>
+</html>

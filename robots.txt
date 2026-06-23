@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Dev/test surfaces — not for indexing
+Disallow: /institute-engine/tests/
+Disallow: /archive/
+Disallow: /uploads/
+
+Sitemap: https://manish-kumar.vercel.app/sitemap.xml

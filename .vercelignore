@@ -1,0 +1,17 @@
+# Dev / working surfaces — never ship to production
+uploads/
+archive/
+screenshots/
+
+# Design-component authoring sources (the public site is the standalone index.html)
+*.dc.html
+*.export-src.html
+support.js
+.thumbnail
+
+# Internal docs — not part of the public site
+DEPLOYMENT.md
+CLAUDE.md
+
+# Test harness (also Disallow'd in robots.txt)
+institute-engine/tests/

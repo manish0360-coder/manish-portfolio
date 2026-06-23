@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Institute — Proving Ground · Vertical Slice 01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;background:#06070B;overflow:hidden;}
+  body{font-family:'Space Grotesk',system-ui,sans-serif;color:#E7E9F0;cursor:default;}
+  #c{position:fixed;inset:0;width:100%;height:100%;display:block;z-index:0;}
+
+  /* cinematic vignette + faint scan to read as an instrument, not a webpage */
+  .vignette{position:fixed;inset:0;z-index:2;pointer-events:none;
+    background:radial-gradient(120% 90% at 50% 42%, transparent 52%, rgba(2,3,6,.55) 100%);}
+
+  #hud{position:fixed;inset:0;z-index:3;pointer-events:none;}
+
+  .label{position:absolute;top:26px;left:28px;font-family:'IBM Plex Mono',monospace;
+    font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#5A6473;
+    display:flex;align-items:center;gap:11px;}
+  .label .dot{width:7px;height:7px;border-radius:50%;border:1px solid #22D3EE;display:inline-flex;align-items:center;justify-content:center;}
+  .label .dot::after{content:"";width:2.5px;height:2.5px;border-radius:50%;background:#22D3EE;box-shadow:0 0 7px #22D3EE;}
+  .label .sep{color:#2c3340;}
+  .label .v{color:#828B9C;}
+
+  #status{position:absolute;top:26px;right:28px;font-family:'IBM Plex Mono',monospace;
+    font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#3c4453;text-align:right;line-height:1.9;}
+  #status b{color:#22D3EE;font-weight:500;}
+
+  #prompt{position:absolute;left:50%;bottom:46px;transform:translateX(-50%) translateY(8px);
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:#A6ACBC;opacity:0;transition:opacity 1s ease, transform 1s ease;
+    display:flex;align-items:center;gap:12px;}
+  #prompt.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  #prompt .key{border:1px solid rgba(34,211,238,.4);color:#22D3EE;border-radius:3px;padding:5px 11px;
+    animation:breathe 3.4s ease-in-out infinite;}
+  @keyframes breathe{0%,100%{opacity:.6;}50%{opacity:1;box-shadow:0 0 18px rgba(34,211,238,.25);}}
+
+  /* center identity reveal */
+  #identity{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;
+    opacity:0;transition:opacity 1.6s ease;}
+  #identity.show{opacity:1;}
+  #identity .name{font-size:clamp(2.4rem,6vw,4.6rem);font-weight:600;letter-spacing:-.03em;line-height:1;
+    filter:drop-shadow(0 0 30px rgba(34,211,238,.25));}
+  #identity .role{margin-top:16px;font-size:clamp(1rem,2.4vw,1.5rem);font-weight:400;color:#A6ACBC;letter-spacing:.01em;}
+  #identity .thesis{margin-top:22px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.22em;
+    text-transform:uppercase;color:#5A6473;display:inline-flex;gap:14px;align-items:center;}
+  #identity .thesis .on{color:#22D3EE;}
+
+  /* projected cluster tags */
+  .tag{position:absolute;transform:translate(-50%,-50%);font-family:'IBM Plex Mono',monospace;
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;
+    opacity:0;transition:opacity 1.2s ease;will-change:transform;}
+  .tag.show{opacity:1;}
+  .tag .stem{display:block;width:1px;height:18px;margin:0 auto 7px;background:currentColor;opacity:.5;}
+
+  #fade{position:fixed;inset:0;z-index:4;background:#06070B;pointer-events:none;
+    transition:opacity 1.6s ease;opacity:1;}
+  #fade.clear{opacity:0;}
+
+  #fallback{position:fixed;inset:0;z-index:9;display:none;align-items:center;justify-content:center;
+    text-align:center;padding:40px;font-family:'IBM Plex Mono',monospace;color:#A6ACBC;letter-spacing:.04em;line-height:1.8;}
+
+  @media (max-width:640px){
+    .label{font-size:9.5px;letter-spacing:.18em;gap:8px;top:20px;left:18px;}
+    #status{font-size:9.5px;top:20px;right:18px;}
+    #prompt{font-size:11px;bottom:34px;}
+  }
+</style>
+</head>
+<body>
+  <canvas id="c"></canvas>
+  <div class="vignette"></div>
+
+  <div id="hud">
+    <div class="label"><span class="dot"></span><span>The Institute</span><span class="sep">//</span><span class="v">Proving&nbsp;Ground</span></div>
+    <div id="status">VERTICAL&nbsp;SLICE&nbsp;01<br><span id="state">— booting —</span></div>
+
+    <div id="identity">
+      <div class="name">Manish Kumar</div>
+      <div class="role">Systems Builder</div>
+      <div class="thesis"><span class="on">Visible</span>·<span class="on">Grounded</span>·<span class="on">Verified</span></div>
+    </div>
+
+    <div id="prompt"><span class="key">click</span><span>initiate verification</span></div>
+
+    <div class="tag" id="tag0"><span class="stem"></span>MiniFlyWire</div>
+    <div class="tag" id="tag1"><span class="stem"></span>Noetica</div>
+    <div class="tag" id="tag2"><span class="stem"></span>Velith</div>
+  </div>
+
+  <div id="fade"></div>
+  <div id="fallback">This experience requires WebGL.<br>Please open it in a modern desktop browser.</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+
+const REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const dom = {
+  state: document.getElementById('state'),
+  prompt: document.getElementById('prompt'),
+  identity: document.getElementById('identity'),
+  fade: document.getElementById('fade'),
+  fallback: document.getElementById('fallback'),
+  tags: [document.getElementById('tag0'), document.getElementById('tag1'), document.getElementById('tag2')],
+};
+
+let renderer;
+try {
+  renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('c'), antialias: true, powerPreference: 'high-performance', preserveDrawingBuffer: true });
+} catch (e) {
+  dom.fallback.style.display = 'flex';
+  throw e;
+}
+const DPR = Math.min(window.devicePixelRatio || 1, 2);
+renderer.setPixelRatio(DPR);
+renderer.setSize(innerWidth, innerHeight);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.05;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color('#06070B');
+scene.fog = new THREE.FogExp2('#06070B', 0.012);
+
+const camera = new THREE.PerspectiveCamera(50, innerWidth / innerHeight, 0.1, 300);
+
+// ---------- palette ----------
+const COL = {
+  dim:   new THREE.Color('#3a4a60'),
+  field: new THREE.Color('#4a586c'),
+  core:  new THREE.Color('#EAFBFF'),
+  c1:    new THREE.Color('#22D3EE'),  // MiniFlyWire
+  c2:    new THREE.Color('#34E0A0'),  // Noetica
+  c3:    new THREE.Color('#9B6DFF'),  // Velith
+  edgeDim:new THREE.Color('#202b3c'),
+};
+
+// ---------- build the lattice ----------
+const rng = (() => { let s = 1337; return () => (s = (s * 16807) % 2147483647) / 2147483647; })();
+function gauss(scale){ return (rng()+rng()+rng()-1.5) * scale; }
+
+const nodes = [];            // {base, noise, dimC, onC, cluster}
+const clusterCenters = [];   // Vector3 for the 3 systems
+const ringR = 13, tilt = 0.32;
+
+// core cluster
+for (let i=0;i<11;i++){
+  const base = new THREE.Vector3(gauss(1.4), gauss(1.0), gauss(1.4));
+  nodes.push(mk(base, COL.core, 0, 0.88));   // core is lit from the first frame (the opening light)
+}
+// three system clusters
+const sysCols = [COL.c1, COL.c2, COL.c3];
+for (let c=0;c<3;c++){
+  const a = (Math.PI*2/3)*c - Math.PI/2;
+  const center = new THREE.Vector3(Math.cos(a)*ringR, Math.sin(a)*ringR*tilt + 1.5, Math.sin(a)*ringR*0.6);
+  clusterCenters.push(center);
+  for (let i=0;i<40;i++){
+    const base = center.clone().add(new THREE.Vector3(gauss(3.4), gauss(2.4), gauss(3.4)));
+    nodes.push(mk(base, sysCols[c], c+1, 0.14));
+  }
+}
+// field nodes
+for (let i=0;i<46;i++){
+  const r = 7 + rng()*16, a = rng()*Math.PI*2, h = gauss(7);
+  const base = new THREE.Vector3(Math.cos(a)*r, h, Math.sin(a)*r);
+  nodes.push(mk(base, COL.field, -1, 0.16));
+}
+function mk(base, onC, cluster, floor){
+  const noise = base.clone().add(new THREE.Vector3(gauss(3.0), gauss(3.0), gauss(3.0)));
+  return { base, noise, onC, dimC: COL.dim, cluster, pos: noise.clone(), floor: floor||0 };
+}
+
+// instanced nodes (emissive-bright -> bloom carries the glow)
+const nodeGeo = new THREE.IcosahedronGeometry(0.135, 1);
+const nodeMat = new THREE.MeshBasicMaterial({ toneMapped:true });
+const inst = new THREE.InstancedMesh(nodeGeo, nodeMat, nodes.length);
+inst.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+scene.add(inst);
+const dummy = new THREE.Object3D();
+const tmpC = new THREE.Color();
+
+// edges
+const edges = []; // {a,b,mid}
+function edge(a,b){ edges.push({a,b}); }
+// spine: core hub(0) -> each cluster hub
+const coreHub = 0;
+const clusterHub = [11, 51, 91]; // first index of each system cluster
+clusterHub.forEach(h => edge(coreHub, h));
+// ring between cluster hubs
+edge(clusterHub[0], clusterHub[1]); edge(clusterHub[1], clusterHub[2]); edge(clusterHub[2], clusterHub[0]);
+// intra-cluster: connect each node to its hub + a neighbor
+for (let c=0;c<3;c++){
+  const start = 11 + c*40, hub = clusterHub[c];
+  for (let i=start;i<start+40;i++){ if(i!==hub){ edge(hub, i); if(rng()>0.55) edge(i, start + Math.floor(rng()*40)); } }
+}
+// a few core internal links
+for (let i=1;i<11;i++) edge(0,i);
+
+const ePos = new Float32Array(edges.length*2*3);
+const eCol = new Float32Array(edges.length*2*3);
+const edgeGeo = new THREE.BufferGeometry();
+edgeGeo.setAttribute('position', new THREE.BufferAttribute(ePos,3));
+edgeGeo.setAttribute('color', new THREE.BufferAttribute(eCol,3));
+const edgeMat = new THREE.LineBasicMaterial({ vertexColors:true, transparent:true, opacity:0.9, blending:THREE.AdditiveBlending, depthWrite:false });
+const edgeLines = new THREE.LineSegments(edgeGeo, edgeMat);
+scene.add(edgeLines);
+
+// starfield
+const starN = 1100, sPos = new Float32Array(starN*3);
+for (let i=0;i<starN;i++){
+  const r = 42 + rng()*70, t = rng()*Math.PI*2, p = Math.acos(2*rng()-1);
+  sPos[i*3]   = r*Math.sin(p)*Math.cos(t);
+  sPos[i*3+1] = r*Math.cos(p);
+  sPos[i*3+2] = r*Math.sin(p)*Math.sin(t);
+}
+const starGeo = new THREE.BufferGeometry();
+starGeo.setAttribute('position', new THREE.BufferAttribute(sPos,3));
+const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color:new THREE.Color('#566276'), size:0.13, sizeAttenuation:true, transparent:true, opacity:0.7 }));
+scene.add(stars);
+
+// architectural grid floor (scale cue)
+const grid = new THREE.GridHelper(120, 60, 0x1a2230, 0x121a26);
+grid.material.color = new THREE.Color('#16202e');
+grid.material.transparent = true; grid.material.opacity = 0.32;
+grid.position.y = -7.5;
+scene.add(grid);
+
+// faint key glow at core
+const coreLight = new THREE.PointLight('#22D3EE', 4, 30, 2);
+coreLight.position.set(0,0,0);
+scene.add(coreLight);
+
+// ---------- post ----------
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+const bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.95, 0.7, 0.1);
+composer.addPass(bloom);
+composer.addPass(new OutputPass());
+
+// ---------- choreography ----------
+const ARRIVAL_MS = REDUCED ? 0 : 6800;
+const VERIFY_MS  = 2600;
+const camStart = new THREE.Vector3(0.2, 0.6, 5.5);
+const camEnd   = new THREE.Vector3(6.0, 8.5, 32.0);
+const target   = new THREE.Vector3(0, 1.4, 0);
+
+let phase = 'arrival';            // arrival -> await -> verify -> settled
+let arrivalT = REDUCED ? 1 : 0;
+let verifyT  = REDUCED ? 1 : 0;
+const clock = new THREE.Clock();
+const ptr = { x:0, y:0, tx:0, ty:0 };
+
+const easeInOutCubic = t => t<0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2;
+const easeOutCubic   = t => 1 - Math.pow(1-t,3);
+const easeOutBack    = t => { const c=1.70158; return 1 + (c+1)*Math.pow(t-1,3) + c*Math.pow(t-1,2); };
+const smooth = (e,x) => Math.max(0, Math.min(1, (x-e+0.5)/1.0));
+
+if (REDUCED){ applyVerify(1); applyNodes(); dom.identity.classList.add('show'); dom.tags.forEach(t=>t.classList.add('show')); setState('verified'); }
+
+function setState(s){ dom.state.textContent = '— '+s+' —'; }
+
+// reveal -> wait, then prompt
+function startVerify(){
+  if (phase!=='await' && phase!=='arrival') return;
+  if (phase==='arrival' && arrivalT < 0.35) return;   // let the reveal breathe a touch
+  phase='verify'; verifyT=0; dom.prompt.classList.remove('show'); setState('verifying');
+  try { resolveTone(); } catch(e){}
+}
+window.addEventListener('pointerdown', startVerify);
+window.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' ') startVerify(); });
+window.addEventListener('pointermove', e=>{ ptr.tx=(e.clientX/innerWidth-0.5); ptr.ty=(e.clientY/innerHeight-0.5); });
+
+// subtle WebAudio "resolve" sweep (post-gesture, optional)
+let actx;
+function resolveTone(){
+  actx = actx || new (window.AudioContext||window.webkitAudioContext)();
+  const o = actx.createOscillator(), g = actx.createGain(), o2 = actx.createOscillator();
+  o.type='sine'; o2.type='sine';
+  o.frequency.setValueAtTime(110, actx.currentTime); o.frequency.exponentialRampToValueAtTime(330, actx.currentTime+1.8);
+  o2.frequency.setValueAtTime(220, actx.currentTime); o2.frequency.exponentialRampToValueAtTime(660, actx.currentTime+1.8);
+  g.gain.setValueAtTime(0.0001, actx.currentTime);
+  g.gain.exponentialRampToValueAtTime(0.06, actx.currentTime+0.25);
+  g.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime+2.4);
+  o.connect(g); o2.connect(g); g.connect(actx.destination);
+  o.start(); o2.start(); o.stop(actx.currentTime+2.5); o2.stop(actx.currentTime+2.5);
+}
+
+// cascade geometry helpers
+const maxDist = Math.max(...nodes.map(n=>n.base.length()));
+function applyVerify(p){
+  // p: 0..1 verification progress -> wave from core outward
+  const wave = p*(maxDist+5);
+  for (const n of nodes){
+    const raw = REDUCED ? 1 : smooth(n.base.length(), wave);
+    const act = Math.max(n.floor, raw);
+    n.act = act;
+    // core stays near its base; others resolve from noise->signal as they verify
+    const posMix = n.cluster===0 ? 1 : easeOutCubic(raw);
+    n.pos.lerpVectors(n.noise, n.base, posMix);
+  }
+}
+function applyNodes(){
+  for (let i=0;i<nodes.length;i++){
+    const n = nodes[i];
+    const a = n.act ?? 0;
+    dummy.position.copy(n.pos);
+    const s = (n.cluster===-1? 0.62:1) * (0.55 + 0.7*a) * (1 + 0.5*Math.max(0, a-0.0001)*(1-a)*2.2); // gentle pop mid-activation
+    dummy.scale.setScalar(s);
+    dummy.updateMatrix();
+    inst.setMatrixAt(i, dummy.matrix);
+    tmpC.copy(n.dimC).lerp(n.onC, a);
+    inst.setColorAt(i, tmpC);
+  }
+  inst.instanceMatrix.needsUpdate = true;
+  if (inst.instanceColor) inst.instanceColor.needsUpdate = true;
+  // edges
+  for (let e=0;e<edges.length;e++){
+    const A=nodes[edges[e].a], B=nodes[edges[e].b];
+    ePos[e*6]=A.pos.x; ePos[e*6+1]=A.pos.y; ePos[e*6+2]=A.pos.z;
+    ePos[e*6+3]=B.pos.x; ePos[e*6+4]=B.pos.y; ePos[e*6+5]=B.pos.z;
+    const ea=(A.act??0), eb=(B.act??0);
+    tmpC.copy(COL.edgeDim).lerp(A.onC, ea*0.8); tmpC.toArray(eCol, e*6);
+    tmpC.copy(COL.edgeDim).lerp(B.onC, eb*0.8); tmpC.toArray(eCol, e*6+3);
+  }
+  edgeGeo.attributes.position.needsUpdate = true;
+  edgeGeo.attributes.color.needsUpdate = true;
+}
+applyVerify(REDUCED?1:0); applyNodes();
+
+// project cluster centers -> screen for tags
+const v = new THREE.Vector3();
+function updateTags(){
+  for (let c=0;c<3;c++){
+    v.copy(clusterCenters[c]); v.y += 3.4; v.project(camera);
+    const x=(v.x*0.5+0.5)*innerWidth, y=(-v.y*0.5+0.5)*innerHeight;
+    const t=dom.tags[c];
+    t.style.left=x+'px'; t.style.top=y+'px';
+    t.style.color = ['#22D3EE','#34E0A0','#9B6DFF'][c];
+    t.style.display = (v.z<1)? 'block':'none';
+  }
+}
+
+// ---------- loop ----------
+addEventListener('resize', ()=>{
+  camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth,innerHeight); composer.setSize(innerWidth,innerHeight);
+});
+
+// clear the boot fade once we have a frame
+requestAnimationFrame(()=>{ requestAnimationFrame(()=>{ dom.fade.classList.add('clear'); if(!REDUCED) setState('arrival'); }); });
+
+let revealed=false;
+function tick(){
+  const dt = clock.getDelta(), t = clock.elapsedTime;
+  ptr.x += (ptr.tx-ptr.x)*0.05; ptr.y += (ptr.ty-ptr.y)*0.05;
+
+  if (phase==='arrival' && !REDUCED){
+    arrivalT = Math.min(1, arrivalT + dt*1000/ARRIVAL_MS);
+    if (arrivalT>=1){ phase='await'; setState('awaiting input'); dom.prompt.classList.add('show'); }
+  }
+  if (phase==='verify'){
+    verifyT = Math.min(1, verifyT + dt*1000/VERIFY_MS);
+    applyVerify(verifyT); applyNodes();
+    bloom.strength = 0.7 + Math.sin(Math.min(1,verifyT)*Math.PI)*0.9;   // bloom blooms then settles
+    if (verifyT>=1){ phase='settled'; setState('verified'); bloom.strength=0.92;
+      dom.identity.classList.add('show'); revealed=true; dom.tags.forEach(t=>t.classList.add('show')); }
+  }
+
+  // camera choreography
+  const cp = easeInOutCubic(arrivalT);
+  const breathe = phase==='settled'? 1:1;
+  camera.position.lerpVectors(camStart, camEnd, cp);
+  // continuous life: slow orbital breathing + pointer parallax (physicality)
+  const orb = REDUCED?0: (t*0.06);
+  camera.position.x += Math.sin(orb)*1.4*cp + ptr.x*3.2*cp;
+  camera.position.y += Math.sin(t*0.18)*0.25*cp - ptr.y*2.0*cp;
+  camera.lookAt(target);
+
+  coreLight.intensity = 3 + Math.sin(t*1.6)*0.6 + (phase==='verify'?verifyT*6:phase==='settled'?5:0);
+  stars.rotation.y = t*0.005;
+  if (revealed) updateTags();
+
+  composer.render();
+  requestAnimationFrame(tick);
+}
+tick();
+</script>
+</body>
+</html>
